@@ -1,0 +1,27 @@
+{% extends 'base.html'%} 
+
+{% block content %}
+<div class="row">
+    
+    <h3>Videos</h3>
+    
+      <div class="row">
+        {% for video in videos %}
+        <div class="col s12 m4">
+          <div class="card">
+            <div class="card-image">
+              <img src="{{video.thumbnails.large}}">
+              <a href="{{url_for('get_detail', video_id=video._id)}}" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+            </div>
+            <div class="card-content">
+              <h4 class="card-title truncate">{{video.video_title}}</h4>
+              <p>description</p>
+            </div>
+          </div>
+      </div>
+      {% endfor %}
+      
+    </div>
+            
+</div>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html'%} 
+
+{% block content %}
+<div>
+    <h2>{{video.video_title}}</h2>
+
+    <div class="video-container">
+    <iframe width="853" height="480" src="https://www.youtube.com/embed/{{video._id}}" frameborder="0" allowfullscreen></iframe>
+    </div>
+</div>
+
+
+{% endblock %}
