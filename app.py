@@ -15,9 +15,9 @@ app.config['MONGO_URI'] = config.MONGO_URI
 
 mongo = PyMongo(app)
 
-@app.route("/get_videos")
-def get_videos():
-    return render_template("get_videos.html", videos=mongo.db.videos.find())
+@app.route("/get_videos/<category>/<page_number>")
+def get_videos(category, page_number):
+    return render_template("get_videos.html", videos=mongo.db.videos.find(), category=category, page_number=page_number)
 
 @app.route("/add_video")
 def add_video():
@@ -57,7 +57,7 @@ def insert_video():
     except HttpError as e:
         print('An HTTP error %d occurred:\n%s' % (e.resp.status, e.content))
         
-    return redirect('get_videos')
+    return redirect('get_videos', category="all", page_number=1)
     
 
 @app.route('/get_detail/<video_id>')

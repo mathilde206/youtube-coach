@@ -9,9 +9,13 @@ body, html {
   display: flex;
   flex-direction: column; }
 
-h1, h2, h3, h4, h5, h6 {
-  color: #006699;
+h1, h2, h3 {
+  color: #996699;
   font-family: "Permanent Marker", cursive; }
+
+h4, h5, h6 {
+  color: #006699;
+  font-family: "Ubuntu", sans-serif; }
 
 main {
   flex: 1 0 auto; }
@@ -66,5 +70,11 @@ header .dropdown-content {
   .page-footer ul li {
     display: inline-block;
     margin-right: 20px; }
+
+.pagination li.active {
+  background-color: #996699; }
+
+.btn-floating {
+  background-color: #996699; }
 
 /*# sourceMappingURL=styles.css.map */

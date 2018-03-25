@@ -4,24 +4,39 @@
 <div class="row">
     
     <h3>Videos</h3>
+    <h5>{%if category == "all" %}
+        All Categories
+        {% else %}
+        Category: {{category.capitalize}}
+        {% endif %}
+    </h5>
     
       <div class="row">
         {% for video in videos %}
         <div class="col s12 m4">
-          <div class="card">
+          <div class="card get-videos">
             <div class="card-image">
               <img src="{{video.thumbnails.large}}">
-              <a href="{{url_for('get_detail', video_id=video._id)}}" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+              <a href="{{url_for('get_detail', video_id=video._id)}}" class="btn-floating halfway-fab waves-effect waves-light"><i class="material-icons">add</i></a>
             </div>
             <div class="card-content">
               <h4 class="card-title truncate">{{video.video_title}}</h4>
-              <p>description</p>
+              <p>{{video.description}}</p>
             </div>
           </div>
-      </div>
+        </div>
       {% endfor %}
-      
     </div>
+    
+    <ul class="pagination">
+    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+    <li class="active"><a href="#!">1</a></li>
+    <li class="waves-effect"><a href="#!">2</a></li>
+    <li class="waves-effect"><a href="#!">3</a></li>
+    <li class="waves-effect"><a href="#!">4</a></li>
+    <li class="waves-effect"><a href="#!">5</a></li>
+    <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+  </ul>
             
 </div>
 {% endblock %}

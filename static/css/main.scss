@@ -25,9 +25,14 @@ body, html{
     flex-direction: column;
 }
 
-h1,h2,h3,h4,h5,h6 {
-    color:$highlight-blue;
+h1,h2,h3 {
+    color:$highlight;
     font-family:$font-titles;
+}
+
+h4,h5,h6 {
+    color:$highlight-blue;
+    font-family:$font-text;
 }
 
 main {
@@ -147,3 +152,11 @@ header {
     
 }
 
+
+.pagination li.active {
+    background-color: $highlight;
+}
+
+.btn-floating {
+    background-color:$highlight;
+}
