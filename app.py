@@ -7,9 +7,11 @@ from bson.objectid import ObjectId
 from get_video_info import youtube_search, get_video_id_from_url
 from googleapiclient.errors import HttpError
 
+import config
+
 app = Flask(__name__)
-app.config['MONGO_DBNAME'] = 'fitness-vids-db'
-app.config['MONGO_URI'] = os.getenv('MONGO_URI')
+app.config['MONGO_DBNAME'] = config.MONGO_DBNAME
+app.config['MONGO_URI'] = config.MONGO_URI
 
 mongo = PyMongo(app)
 
