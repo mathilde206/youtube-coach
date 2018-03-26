@@ -76,5 +76,37 @@ header .dropdown-content {
 
 .btn-floating {
   background-color: #996699; }
+  .btn-floating:active, .btn-floating:focus, .btn-floating:hover {
+    background-color: #a22aa5; }
+
+.video-details h4 {
+  color: #996699;
+  text-align: center; }
+.video-details h5 {
+  color: #006699;
+  margin: 20px; }
+.video-details .card {
+  display: flex;
+  justify-content: center;
+  padding: 10px; }
+.video-details ul li {
+  margin-bottom: 5px; }
+  .video-details ul li span {
+    color: #996699;
+    font-family: "Permanent Marker", cursive;
+    letter-spacing: 2px;
+    margin-right: 10px; }
+  .video-details ul li a {
+    color: #006699;
+    cursor: pointer; }
+    .video-details ul li a:hover, .video-details ul li a:active, .video-details ul li a:focus {
+      color: #a22aa5; }
+.video-details .waves-effect.waves-light.btn {
+  background-color: #996699;
+  color: #fafafa;
+  text-transform: lowercase;
+  margin-left: 20px; }
+.video-details video-stats {
+  display: flex; }
 
 /*# sourceMappingURL=styles.css.map */

@@ -51,6 +51,7 @@ header {
         .nav-wrapper a {
             color:$main-white;
         }
+        
     }
     
     .dropdown-content {
@@ -159,4 +160,58 @@ header {
 
 .btn-floating {
     background-color:$highlight;
+    
+    &:active, &:focus, &:hover {
+        background-color:$highlight-darker;   
+    }
 }
+
+.video-details{
+
+    h4{
+        color: $highlight;
+        text-align: center;
+    }
+    h5{
+        color:$highlight-blue;
+        margin:20px;
+    }
+    
+    .card{
+        display:flex;
+        justify-content: center;
+        padding:10px;
+    }
+    
+    ul li {
+        margin-bottom: 5px;
+    
+        span{
+        color:$highlight;
+        font-family:$font-titles;
+        letter-spacing: 2px;
+        margin-right: 10px;
+        }
+        
+        a{
+            color:$highlight-blue;
+            cursor:pointer;
+            &:hover, &:active, &:focus{
+                color:$highlight-darker;
+            }
+        }
+    }
+    
+    .waves-effect.waves-light.btn {
+        background-color: $highlight;
+        color:$main-white;
+        text-transform: lowercase;
+        margin-left: 20px;
+    }
+    
+    
+    video-stats{
+        display:flex;
+    }
+}
+

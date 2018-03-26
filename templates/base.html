@@ -32,18 +32,18 @@
                     <li><a href="#">Explore Stats</a></li>
                     <li><div class="divider"></div></li>
                     <li><a class="subheader" href="{{url_for('get_videos', category="all", page_number=1)}}">Explore Videos</a></li>
-                    <li><a class="waves-effect" href="#!">Yoga</a></li>
-                    <li><a class="waves-effect" href="#!">Strenght</a></li>
-                    <li><a class="waves-effect" href="#!">Cardio</a></li>
+                    <li><a class="waves-effect" href="{{url_for('get_videos', category="yoga", page_number=1)}}">Yoga</a></li>
+                    <li><a class="waves-effect" href="{{url_for('get_videos', category="strength", page_number=1)}}">Strength</a></li>
+                    <li><a class="waves-effect" href="{{url_for('get_videos', category="cardio", page_number=1)}}">Cardio</a></li>
                     <li><a class="waves-effect" href="{{url_for('get_videos', category="all", page_number=1)}}">All</a></li>
                 </ul>
             </div>
         </nav>
         
         <ul id="dropdown" class="dropdown-content">
-            <li><a href="#!">Yoga</a></li>
-            <li><a href="#!">Strenght</a></li>
-            <li><a href="#!">Cardio</a></li>
+            <li><a href="{{url_for('get_videos', category="yoga", page_number=1)}}">Yoga</a></li>
+            <li><a href="{{url_for('get_videos', category="strength", page_number=1)}}">Strength</a></li>
+            <li><a href="{{url_for('get_videos', category="cardio", page_number=1)}}">Cardio</a></li>
             <li><a href="{{url_for('get_videos', category="all", page_number=1)}}">All</a></li>
         </ul>
     

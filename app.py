@@ -1,5 +1,6 @@
 import os
 import json
+import math
 from urllib.parse import urlparse, parse_qs
 from flask import Flask, render_template, url_for, request, redirect
 from flask_pymongo import PyMongo
@@ -9,6 +10,7 @@ from googleapiclient.errors import HttpError
 
 import config
 
+
 app = Flask(__name__)
 app.config['MONGO_DBNAME'] = config.MONGO_DBNAME
 app.config['MONGO_URI'] = config.MONGO_URI
@@ -17,7 +19,23 @@ mongo = PyMongo(app)
 
 @app.route("/get_videos/<category>/<page_number>")
 def get_videos(category, page_number):
-    return render_template("get_videos.html", videos=mongo.db.videos.find(), category=category, page_number=page_number)
+    skips = 9*(int(page_number)-1)
+    
+    if category == "all":
+        videos=mongo.db.videos.find().skip(skips).limit(9)
+        number_of_pages= math.ceil(mongo.db.videos.count()/9)
+    else:
+        videos=mongo.db.videos.find({"category_name": category}).skip(skips).limit(9)
+        number_of_pages= math.ceil(mongo.db.videos.count({"category_name": category})/9)
+        print(number_of_pages)
+        
+
+    return render_template("get_videos.html", 
+                            videos=videos, 
+                            category=category, 
+                            number_of_pages=number_of_pages,
+                            page_number=page_number)
+
 
 @app.route("/add_video")
 def add_video():
@@ -57,7 +75,7 @@ def insert_video():
     except HttpError as e:
         print('An HTTP error %d occurred:\n%s' % (e.resp.status, e.content))
         
-    return redirect('get_videos', category="all", page_number=1)
+    return redirect(url_for('get_videos', category="all", page_number=1))
     
 
 @app.route('/get_detail/<video_id>')
@@ -66,6 +84,10 @@ def get_detail(video_id):
 
 
 
+@app.route("/like_video/<video_id>", methods=["POST"])
+def like_video(video_id):
+    mongo.db.videos.update({"_id": video_id}, {"$inc":{"number_of_likes":1}})
+    return redirect(url_for('get_detail', video_id=video_id))
 
 if __name__ == "__main__":
     app.run(host= os.environ.get("IP"), 

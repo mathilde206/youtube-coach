@@ -7,10 +7,9 @@
     <h5>{%if category == "all" %}
         All Categories
         {% else %}
-        Category: {{category.capitalize}}
+        Category: {{category.capitalize()}}
         {% endif %}
     </h5>
-    
       <div class="row">
         {% for video in videos %}
         <div class="col s12 m4">
@@ -28,15 +27,50 @@
       {% endfor %}
     </div>
     
-    <ul class="pagination">
-    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-    <li class="active"><a href="#!">1</a></li>
-    <li class="waves-effect"><a href="#!">2</a></li>
-    <li class="waves-effect"><a href="#!">3</a></li>
-    <li class="waves-effect"><a href="#!">4</a></li>
-    <li class="waves-effect"><a href="#!">5</a></li>
-    <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
-  </ul>
-            
+    <footer>
+      <ul class="pagination">
+      {% if page_number|int == 1 %}
+        <li class="disabled">
+      {% else %}
+        <li class="wave-effect">
+      {% endif %}  
+          <a href="{{url_for('get_videos', 
+                            category=category,
+                            number_of_pages=number_of_pages,
+                            page_number=page_number|int-1)}}">
+            <i class="material-icons">chevron_left</i>
+          </a>
+        </li>
+          
+      
+      {% for numb in range(number_of_pages|int) %}
+        {% if numb+1 == page_number|int %}
+          <li class="active">
+        {% else %}
+          <li class="waves-effect">
+        {% endif %}
+            <a href="{{url_for('get_videos', 
+                            category=category,
+                            number_of_pages=number_of_pages,
+                            page_number=numb)}}">
+              {{numb+1}}
+            </a>
+          </li>
+      {% endfor %}
+      {% if page_number|int == number_of_pages|int %}
+        <li class="disabled">
+      {% else %}
+        <li class="waves-effect">
+      {% endif %}
+          <a href="{{url_for('get_videos', 
+                            category=category,
+                            number_of_pages=number_of_pages,
+                            page_number=page_number|int+1)}}">
+            <i class="material-icons">chevron_right</i>
+          </a>
+        </li>
+        
+    </ul>
+  </footer>        
 </div>
 {% endblock %}

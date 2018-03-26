@@ -1,13 +1,75 @@
 {% extends 'base.html'%} 
 
 {% block content %}
-<div>
-    <h2>{{video.video_title}}</h2>
+<div class="container video-details">
+    <h4>{{video.video_title}}</h4>
 
     <div class="video-container">
-    <iframe width="853" height="480" src="https://www.youtube.com/embed/{{video._id}}" frameborder="0" allowfullscreen></iframe>
+        <iframe width="853" height="480" src="https://www.youtube.com/embed/{{video._id}}" frameborder="0" allowfullscreen></iframe>
     </div>
-</div>
+    
+    <div class="card">
+        <h5>About</h5>
+        <ul>
+            <li>
+                <span>Video By</span> {{video.youtuber.capitalize()}}
+            </li>
+            <li>
+                <span>Description</span> {{video.video_description}}
+            </li>
+            <li>
+                <span>Category</span> 
+                <a href="{{url_for('get_videos', category=video.category_name, page_number=1)}}"> 
+                    {{video.category_name.capitalize()}}
+                </a>
+            </li>
+            <li>
+                <span>Body Part(s) Targetted</span> 
+                {% if video.body_part_name is mapping %}
+                    {{ ', '.join(video.body_part_name) }}
+                {% else %}
+                    {{video.body_part_name.capitalize()}}
+                {% endif %}
+
+            </li>
+        </ul>
+    </div>
+    
+    <div class='card'>
+        
+        <h5>More Info</h5>
+        <ul>
+            <li>
+                <span>Views Count</span> {{video.YT_popularity.view_count}} views on Youtube
+            </li>
+            <li>
+                <span>Published On</span>{{video.published_at}}
+                </a>
+            </li>
+            <li>
+                <!--TO DO : ADD LINK FOR USER DETAILS-->
+                <span>Added by</span> <a>{{video.contributor_username}}</a>
+                </a>
+            </li>
+            
+            <li>
+                <span>Number of Likes</span> 
+                {%if video.number_of_likes %}
+                    {{video.number_of_likes}}
+                {% else %}
+                    0
+                {% endif %}
+            </li>
+            <li>
+                <form action="{{url_for('like_video', video_id=video._id)}}" method="POST">
+                   <button  class="waves-effect waves-light btn" type="submit"> 
+                        <i class="material-icons">thumb_up</i> Like
+                    </button> 
+                </form>
+                
+            </li>
+        </ul>
+    </div>
 
 
 {% endblock %}
