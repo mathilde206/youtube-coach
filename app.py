@@ -17,6 +17,10 @@ app.config['MONGO_URI'] = config.MONGO_URI
 
 mongo = PyMongo(app)
 
+@app.route("/")
+def index():
+    return render_template("index.html")
+
 @app.route("/get_videos/<category>/<page_number>")
 def get_videos(category, page_number):
     skips = 9*(int(page_number)-1)
