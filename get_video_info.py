@@ -1,9 +1,12 @@
 import isodate
-from datetime import datetime
+from datetime import datetime, timedelta
+from humanize import intcomma
 import re
 
 from googleapiclient.discovery import build
 from urllib.parse import parse_qs, urlparse
+from googleapiclient.errors import HttpError
+
 
 DEVELOPER_KEY = 'AIzaSyA-HP_X6A6Gp15rbv4VGSnJJSg_9UdUPG0'
 YOUTUBE_API_SERVICE_NAME = 'youtube'
@@ -20,7 +23,10 @@ def youtube_search(vid_id):
     
     result = {
         'id':vid_id,
-        'duration':isodate.parse_duration(video_response['items'][0]['contentDetails']['duration']).total_seconds(),
+        'duration':{
+            'seconds': isodate.parse_duration(video_response['items'][0]['contentDetails']['duration']).total_seconds(),
+            'human_readable': str(timedelta(seconds = isodate.parse_duration(video_response['items'][0]['contentDetails']['duration']).total_seconds()))
+            },
         'published_at':isodate.parse_date(video_response['items'][0]['snippet']['publishedAt']).isoformat(),
         'video_title': video_response['items'][0]['snippet']['title'],
         'youtuber': video_response['items'][0]['snippet']['channelTitle'],
@@ -30,7 +36,7 @@ def youtube_search(vid_id):
             },
         'YT_popularity': {
             'like_count': video_response['items'][0]['statistics']['likeCount'],
-            'view_count':video_response['items'][0]['statistics']['viewCount'] 
+            'view_count':intcomma(video_response['items'][0]['statistics']['viewCount'])
             }
         }, 
     
@@ -51,12 +57,7 @@ def get_video_id_from_url(url):
 if __name__ == '__main__':
 
   try:
-    # result = youtube_search('pyFNz8zJSdw')
-    # # print(result)
-    print(get_video_id_from_url('http://youtu.be/SA2iWivDJiE'))
-    print(get_video_id_from_url('https://www.youtube.com/watch?v=DqGwxR_0d1M&feature=youtu.be'))
-    print(get_video_id_from_url('https://www.youtube.com/embed/SA2iWivDJiE'))
-    
-
+    result = youtube_search('pyFNz8zJSdw')
+    print(result)
   except HttpError as e:
     print('An HTTP error %d occurred:\n%s' % (e.resp.status, e.content))

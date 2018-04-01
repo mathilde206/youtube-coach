@@ -31,20 +31,20 @@
                     <li><a href="{{url_for('add_video')}}">Add A Video</a></li>
                     <li><a href="#">Explore Stats</a></li>
                     <li><div class="divider"></div></li>
-                    <li><a class="subheader" href="{{url_for('get_videos', category="all", page_number=1)}}">Explore Videos</a></li>
-                    <li><a class="waves-effect" href="{{url_for('get_videos', category="yoga", page_number=1)}}">Yoga</a></li>
-                    <li><a class="waves-effect" href="{{url_for('get_videos', category="strength", page_number=1)}}">Strength</a></li>
-                    <li><a class="waves-effect" href="{{url_for('get_videos', category="cardio", page_number=1)}}">Cardio</a></li>
-                    <li><a class="waves-effect" href="{{url_for('get_videos', category="all", page_number=1)}}">All</a></li>
+                    <li><a class="subheader" href="{{url_for('get_videos', category='all', page_number=1)}}">Explore Videos</a></li>
+                    <li><a class="waves-effect" href="{{url_for('get_videos', category='yoga', page_number=1)}}">Yoga</a></li>
+                    <li><a class="waves-effect" href="{{url_for('get_videos', category='strength', page_number=1)}}">Strength</a></li>
+                    <li><a class="waves-effect" href="{{url_for('get_videos', category='cardio', page_number=1)}}">Cardio</a></li>
+                    <li><a class="waves-effect" href="{{url_for('get_videos', category='all', page_number=1)}}">All</a></li>
                 </ul>
             </div>
         </nav>
         
         <ul id="dropdown" class="dropdown-content">
-            <li><a href="{{url_for('get_videos', category="yoga", page_number=1)}}">Yoga</a></li>
-            <li><a href="{{url_for('get_videos', category="strength", page_number=1)}}">Strength</a></li>
-            <li><a href="{{url_for('get_videos', category="cardio", page_number=1)}}">Cardio</a></li>
-            <li><a href="{{url_for('get_videos', category="all", page_number=1)}}">All</a></li>
+            <li><a href="{{url_for('get_videos', category='yoga', page_number=1)}}">Yoga</a></li>
+            <li><a href="{{url_for('get_videos', category='strength', page_number=1)}}">Strength</a></li>
+            <li><a href="{{url_for('get_videos', category='cardio', page_number=1)}}">Cardio</a></li>
+            <li><a href="{{url_for('get_videos', category='all', page_number=1)}}">All</a></li>
         </ul>
     
     </header>
@@ -85,10 +85,12 @@
             close: 'Ok',
             closeOnSelect: false // Close upon selecting a date,
         });
-        
-        
-        
+    
          
     </script>
+    
+    
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>   
+    <script type="text/javascript" src="{{url_for('static', filename='js/form-validation.js')}}"></script>   
 </body>
 </html>

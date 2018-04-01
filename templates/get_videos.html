@@ -30,10 +30,9 @@
     <footer>
       <ul class="pagination">
       {% if page_number|int == 1 %}
-        <li class="disabled">
+        <li class="disabled"><a href="#"><i class="material-icons">chevron_left</i></a></li>
       {% else %}
         <li class="wave-effect">
-      {% endif %}  
           <a href="{{url_for('get_videos', 
                             category=category,
                             number_of_pages=number_of_pages,
@@ -41,6 +40,7 @@
             <i class="material-icons">chevron_left</i>
           </a>
         </li>
+        {% endif %}
           
       
       {% for numb in range(number_of_pages|int) %}
@@ -52,16 +52,15 @@
             <a href="{{url_for('get_videos', 
                             category=category,
                             number_of_pages=number_of_pages,
-                            page_number=numb)}}">
+                            page_number=numb+1)}}">
               {{numb+1}}
             </a>
           </li>
       {% endfor %}
       {% if page_number|int == number_of_pages|int %}
-        <li class="disabled">
+        <li class="disabled"><a href="#"><i class="material-icons">chevron_right</i></a></li>
       {% else %}
         <li class="waves-effect">
-      {% endif %}
           <a href="{{url_for('get_videos', 
                             category=category,
                             number_of_pages=number_of_pages,
@@ -69,7 +68,7 @@
             <i class="material-icons">chevron_right</i>
           </a>
         </li>
-        
+      {% endif %}
     </ul>
   </footer>        
 </div>

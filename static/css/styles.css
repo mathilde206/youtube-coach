@@ -28,7 +28,7 @@ header nav {
   header nav .nav-wrapper a {
     color: #fafafa; }
     header nav .nav-wrapper a:hover {
-      color: #996699; }
+      color: #1da7f5; }
 header .dropdown-content {
   background: #fafafa; }
   header .dropdown-content li a {
@@ -42,7 +42,7 @@ header .dropdown-content {
 .home-page h3 {
   color: #006699;
   text-align: center; }
-@media screen and (min-width: 600px) {
+@media only screen and (min-width: 601px) {
   .home-page .row {
     display: flex;
     align-items: stretch; } }
@@ -63,6 +63,9 @@ header .dropdown-content {
 .container-form {
   display: flex;
   justify-content: center; }
+  .container-form .error {
+    color: red;
+    margin-left: 40px; }
   .container-form .row {
     margin-top: 5px;
     width: 95%; }
@@ -84,6 +87,24 @@ header .dropdown-content {
       color: #fafafa; }
     .container-form button .material-icons {
       color: #fafafa; }
+
+.action-video {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; }
+  .action-video form button.btn {
+    color: #fafafa;
+    text-transform: lowercase;
+    margin-left: 20px; }
+    .action-video form button.btn.like {
+      background-color: #006699; }
+      .action-video form button.btn.like:hover {
+        background-color: #1da7f5; }
+    .action-video form button.btn.delete {
+      background-color: #a22aa5; }
+      .action-video form button.btn.delete:hover {
+        background-color: #996699; }
 
 .page-footer {
   margin-top: 40px;
@@ -122,11 +143,6 @@ header .dropdown-content {
     cursor: pointer; }
     .video-details ul li a:hover, .video-details ul li a:active, .video-details ul li a:focus {
       color: #a22aa5; }
-.video-details .waves-effect.waves-light.btn {
-  background-color: #996699;
-  color: #fafafa;
-  text-transform: lowercase;
-  margin-left: 20px; }
 .video-details video-stats {
   display: flex; }
 
