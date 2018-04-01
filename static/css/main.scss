@@ -1,9 +1,12 @@
 /*VARIABLES*/
-$font-stack:    Helvetica, sans-serif;
+
+$font-stack : Helvetica,
+sans-serif;
 
 /*Colors*/
-$main-black:                #151515;
-$main-white:                #fafafa;
+
+$main-black : #151515;
+$main-white : #fafafa;
 
 $highlight:#996699;
 $highlight-darker: #a22aa5;
@@ -14,256 +17,323 @@ $highlight-blue-lighter:#1da7f5;
 $gray:#CCCCCC;
 $light-gray: #fcfcfc;
 
-$font-titles: 'Permanent Marker', cursive;
-$font-text: 'Ubuntu', sans-serif;
+$font-titles: 'Permanent Marker',
+cursive;
+$font-text: 'Ubuntu',
+sans-serif;
 
 $small-screen-up: 601px !default;
 $medium-and-up: "only screen and (min-width : #{$small-screen-up})" !default;
 
 /*General Rules*/
-body, html{
-    width:100vw;
-    height:100vh;
-    background-color:$light-gray;
-    font-family:$font-text;
-    display:flex;
+
+body,
+html {
+    width: 100vw;
+    height: 100vh;
+    background-color: $light-gray;
+    font-family: $font-text;
+    display: flex;
     flex-direction: column;
 }
 
-h1,h2,h3 {
-    color:$highlight;
-    font-family:$font-titles;
+h1,
+h2,
+h3 {
+    color: $highlight;
+    font-family: $font-titles;
 }
 
-h4,h5,h6 {
-    color:$highlight-blue;
-    font-family:$font-text;
+h4,
+h5,
+h6 {
+    color: $highlight-blue;
+    font-family: $font-text;
 }
 
 main {
     flex: 1 0 auto;
-    
+
     .container {
-        background-color:$light-gray;
+        background-color: $light-gray;
     }
 }
 
+
+.btn-floating {
+    background-color: $highlight;
+
+    &:active,
+    &:focus,
+    &:hover {
+        background-color: $highlight-darker;
+    }
+}
+
+
 /*Nav-Bar*/
+
 header {
     nav {
-    background-color:$main-black;
-    
+        background-color: $main-black;
+
         .nav-wrapper a {
-            color:$main-white;
-            
+            color: $main-white;
+
             &:hover {
                 color: $highlight-blue-lighter;
             }
         }
-        
+
     }
-    
+
     .dropdown-content {
         background: $main-white;
-        
+
         li a {
             color: $main-black;
-            border-bottom:1px solid $highlight-blue;
-            
-            &:focus, &:hover{
-                background:$highlight;
-                color:$main-white;
+            border-bottom: 1px solid $highlight-blue;
+
+            &:focus,
+            &:hover {
+                background: $highlight;
+                color: $main-white;
             }
         }
-        
+
 
     }
 }
 
 
-/*Home Page*/
-.home-page {
-    
-    h3{
-        color: $highlight-blue;
-        text-align:center;
-    }
-    
-    .row {
-        @media #{$medium-and-up} {
-            display:flex;
-            align-items:stretch;
-        }
-    }
-
-  .col .card {
-        background-color: $main-black;
-        height:100%;
-        color: $main-white;
-        text-align:center;
-        transition: all 300ms linear;
-        
-        .card-title{
-            font-family: $font-titles;
-        }
-        
-        &:hover{
-            background-color:$highlight-blue;
-            color:$main-white;
-            text-decoration:none;
-        }
-  }
-  
-}
 
 
+/*Forms*/
 
-/*Form*/
 .container-form {
-    display:flex;
-    justify-content:center;
-    
-    .error{
-        color:red;
+    display: flex;
+    justify-content: center;
+
+    .error {
+        color: red;
         margin-left: 40px;
     }
-    
+
     .row {
-    margin-top:5px;
-    width:95%;
+        margin-top: 5px;
+        width: 95%;
     }
-    
+
     .material-icons {
-        color:$highlight-blue;
+        color: $highlight-blue;
     }
-    
+
     .prefix {
-        &.active { 
-            color: $highlight; 
-        }
-    }
-    
-    
-    .input-field {
-        input[type=text]:focus + label, textarea:focus + label {
+        &.active {
             color: $highlight;
         }
-        
-        input:focus, textarea:focus {
+    }
+
+
+    .input-field {
+        input[type=text]:focus+label,
+        textarea:focus+label {
+            color: $highlight;
+        }
+
+        input:focus,
+        textarea:focus {
             border-bottom: 1px solid $highlight !important;
             box-shadow: 0 1px 0 0 $highlight !important
-         }
-    }
-    
-    .input-field .select-wrapper .dropdown-content.select-dropdown li span{
-        color:$highlight;
-    }
-    
-    button {
-        background:$highlight-blue;
-    
-        &:focus, &:hover, &:active {
-            background:$highlight;
-            color:$main-white;
         }
-    
+    }
+
+    .input-field .select-wrapper .dropdown-content.select-dropdown li span {
+        color: $highlight;
+    }
+
+    button {
+        background: $highlight-blue;
+
+        &:focus,
+        &:hover,
+        &:active {
+            background: $highlight;
+            color: $main-white;
+        }
+
         .material-icons {
-            color:$main-white;
+            color: $main-white;
         }
     }
 }
 
 .action-video {
-    margin-top:20px;
-    display:flex;
+    margin-top: 20px;
+    display: flex;
     align-items: center;
     justify-content: flex-start;
-    
+
     form button.btn {
-        color:$main-white;
+        color: $main-white;
         text-transform: lowercase;
         margin-left: 20px;
-        
+
         &.like {
             background-color: $highlight-blue;
-            
-            &:hover{
+
+            &:hover {
                 background-color: $highlight-blue-lighter;
             }
         }
-        
+
         &.delete {
             background-color: $highlight-darker;
-            
-            &:hover{
+
+            &:hover {
                 background-color: $highlight;
             }
         }
     }
 }
 
-.page-footer {
-    margin-top:40px;
-    background-color:$highlight-blue;
-    
-    ul li {
-        display:inline-block;
-        margin-right:30px;
+
+
+/*Get Videos Page*/
+
+.get_videos {
+    h3,
+    h4 {
+        text-align: center;
+    }
+
+    h5 {
+        color: $highlight;
+    }
+
+    button.btn {
+        background-color: $highlight-blue;
+
+        &:hover,
+        &:active,
+        &:focus {
+            background-color: $highlight-blue-lighter;
+        }
     }
 }
 
+
+
+
+
+
+
+
+/*Home Page*/
+
+.home-page {
+
+    h3 {
+        color: $highlight-blue;
+        text-align: center;
+    }
+
+    .row {
+        @media #{$medium-and-up} {
+            display: flex;
+            align-items: stretch;
+        }
+    }
+
+    .col .card {
+        background-color: $main-black;
+        height: 100%;
+        color: $main-white;
+        text-align: center;
+        transition: all 300ms linear;
+
+        .card-title {
+            font-family: $font-titles;
+        }
+
+        &:hover {
+            background-color: $highlight-blue;
+            color: $main-white;
+            text-decoration: none;
+        }
+    }
+
+}
+
+
+
+/*Get Details Page*/
+
+.video-details {
+
+    h4 {
+        color: $highlight;
+        text-align: center;
+    }
+    h5 {
+        color: $highlight-blue;
+        margin: 20px;
+    }
+
+    .card {
+        display: flex;
+        justify-content: center;
+        padding: 10px;
+    }
+
+    ul li {
+        margin-bottom: 5px;
+
+        span {
+            color: $highlight;
+            font-family: $font-titles;
+            letter-spacing: 2px;
+            margin-right: 10px;
+        }
+
+        a {
+            color: $highlight-blue;
+            cursor: pointer;
+            &:hover,
+            &:active,
+            &:focus {
+                color: $highlight-darker;
+            }
+        }
+    }
+
+
+
+
+
+
+    /*Stats Page*/
+    video-stats {
+        display: flex;
+    }
+}
+
+
+
+
+/*Pagination & Footer*/
 
 .pagination li.active {
     background-color: $highlight;
 }
 
-.btn-floating {
-    background-color:$highlight;
-    
-    &:active, &:focus, &:hover {
-        background-color:$highlight-darker;   
-    }
-}
 
-.video-details{
+.page-footer {
+    margin-top: 40px;
+    background-color: $highlight-blue;
 
-    h4{
-        color: $highlight;
-        text-align: center;
-    }
-    h5{
-        color:$highlight-blue;
-        margin:20px;
-    }
-    
-    .card{
-        display:flex;
-        justify-content: center;
-        padding:10px;
-    }
-    
     ul li {
-        margin-bottom: 5px;
-    
-        span{
-        color:$highlight;
-        font-family:$font-titles;
-        letter-spacing: 2px;
-        margin-right: 10px;
-        }
-        
-        a{
-            color:$highlight-blue;
-            cursor:pointer;
-            &:hover, &:active, &:focus{
-                color:$highlight-darker;
-            }
-        }
-    }
-    
-    
-    video-stats{
-        display:flex;
+        display: inline-block;
+        margin-right: 30px;
     }
 }
-

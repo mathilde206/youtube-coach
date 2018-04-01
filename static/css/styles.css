@@ -1,7 +1,8 @@
 /*VARIABLES*/
 /*Colors*/
 /*General Rules*/
-body, html {
+body,
+html {
   width: 100vw;
   height: 100vh;
   background-color: #fcfcfc;
@@ -9,11 +10,15 @@ body, html {
   display: flex;
   flex-direction: column; }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   color: #996699;
   font-family: "Permanent Marker", cursive; }
 
-h4, h5, h6 {
+h4,
+h5,
+h6 {
   color: #006699;
   font-family: "Ubuntu", sans-serif; }
 
@@ -21,6 +26,11 @@ main {
   flex: 1 0 auto; }
   main .container {
     background-color: #fcfcfc; }
+
+.btn-floating {
+  background-color: #996699; }
+  .btn-floating:active, .btn-floating:focus, .btn-floating:hover {
+    background-color: #a22aa5; }
 
 /*Nav-Bar*/
 header nav {
@@ -38,28 +48,7 @@ header .dropdown-content {
       background: #996699;
       color: #fafafa; }
 
-/*Home Page*/
-.home-page h3 {
-  color: #006699;
-  text-align: center; }
-@media only screen and (min-width: 601px) {
-  .home-page .row {
-    display: flex;
-    align-items: stretch; } }
-.home-page .col .card {
-  background-color: #151515;
-  height: 100%;
-  color: #fafafa;
-  text-align: center;
-  transition: all 300ms linear; }
-  .home-page .col .card .card-title {
-    font-family: "Permanent Marker", cursive; }
-  .home-page .col .card:hover {
-    background-color: #006699;
-    color: #fafafa;
-    text-decoration: none; }
-
-/*Form*/
+/*Forms*/
 .container-form {
   display: flex;
   justify-content: center; }
@@ -73,9 +62,11 @@ header .dropdown-content {
     color: #006699; }
   .container-form .prefix.active {
     color: #996699; }
-  .container-form .input-field input[type=text]:focus + label, .container-form .input-field textarea:focus + label {
+  .container-form .input-field input[type=text]:focus + label,
+  .container-form .input-field textarea:focus + label {
     color: #996699; }
-  .container-form .input-field input:focus, .container-form .input-field textarea:focus {
+  .container-form .input-field input:focus,
+  .container-form .input-field textarea:focus {
     border-bottom: 1px solid #996699 !important;
     box-shadow: 0 1px 0 0 #996699 !important; }
   .container-form .input-field .select-wrapper .dropdown-content.select-dropdown li span {
@@ -106,44 +97,75 @@ header .dropdown-content {
       .action-video form button.btn.delete:hover {
         background-color: #996699; }
 
+/*Get Videos Page*/
+.get_videos h3,
+.get_videos h4 {
+  text-align: center; }
+.get_videos h5 {
+  color: #996699; }
+.get_videos button.btn {
+  background-color: #006699; }
+  .get_videos button.btn:hover, .get_videos button.btn:active, .get_videos button.btn:focus {
+    background-color: #1da7f5; }
+
+/*Home Page*/
+.home-page h3 {
+  color: #006699;
+  text-align: center; }
+@media only screen and (min-width: 601px) {
+  .home-page .row {
+    display: flex;
+    align-items: stretch; } }
+.home-page .col .card {
+  background-color: #151515;
+  height: 100%;
+  color: #fafafa;
+  text-align: center;
+  transition: all 300ms linear; }
+  .home-page .col .card .card-title {
+    font-family: "Permanent Marker", cursive; }
+  .home-page .col .card:hover {
+    background-color: #006699;
+    color: #fafafa;
+    text-decoration: none; }
+
+/*Get Details Page*/
+.video-details {
+  /*Stats Page*/ }
+  .video-details h4 {
+    color: #996699;
+    text-align: center; }
+  .video-details h5 {
+    color: #006699;
+    margin: 20px; }
+  .video-details .card {
+    display: flex;
+    justify-content: center;
+    padding: 10px; }
+  .video-details ul li {
+    margin-bottom: 5px; }
+    .video-details ul li span {
+      color: #996699;
+      font-family: "Permanent Marker", cursive;
+      letter-spacing: 2px;
+      margin-right: 10px; }
+    .video-details ul li a {
+      color: #006699;
+      cursor: pointer; }
+      .video-details ul li a:hover, .video-details ul li a:active, .video-details ul li a:focus {
+        color: #a22aa5; }
+  .video-details video-stats {
+    display: flex; }
+
+/*Pagination & Footer*/
+.pagination li.active {
+  background-color: #996699; }
+
 .page-footer {
   margin-top: 40px;
   background-color: #006699; }
   .page-footer ul li {
     display: inline-block;
     margin-right: 30px; }
-
-.pagination li.active {
-  background-color: #996699; }
-
-.btn-floating {
-  background-color: #996699; }
-  .btn-floating:active, .btn-floating:focus, .btn-floating:hover {
-    background-color: #a22aa5; }
-
-.video-details h4 {
-  color: #996699;
-  text-align: center; }
-.video-details h5 {
-  color: #006699;
-  margin: 20px; }
-.video-details .card {
-  display: flex;
-  justify-content: center;
-  padding: 10px; }
-.video-details ul li {
-  margin-bottom: 5px; }
-  .video-details ul li span {
-    color: #996699;
-    font-family: "Permanent Marker", cursive;
-    letter-spacing: 2px;
-    margin-right: 10px; }
-  .video-details ul li a {
-    color: #006699;
-    cursor: pointer; }
-    .video-details ul li a:hover, .video-details ul li a:active, .video-details ul li a:focus {
-      color: #a22aa5; }
-.video-details video-stats {
-  display: flex; }
 
 /*# sourceMappingURL=styles.css.map */
