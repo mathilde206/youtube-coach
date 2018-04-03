@@ -210,7 +210,7 @@ header {
     h5 {
         color: $highlight;
     }
-
+    
     button.btn {
         background-color: $highlight-blue;
 
@@ -218,6 +218,17 @@ header {
         &:active,
         &:focus {
             background-color: $highlight-blue-lighter;
+        }
+    }
+    
+    .mobile-filter{
+        button.dropdown-button{
+            width:100%;
+        }
+        
+        ul#dropdown1{
+            padding:20px;
+            height:50vh;
         }
     }
 }

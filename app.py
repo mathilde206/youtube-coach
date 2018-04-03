@@ -25,7 +25,7 @@ def get_mongo_search_query(value, search_query):
         for item in search_query:
             arr.append({value:item})
         return {'$or': arr}
-        
+
 def append_to_query(value, query_arr):
     if request.form.get(value):
             category_name_query = get_mongo_search_query(value, request.form.getlist(value))
@@ -41,7 +41,7 @@ def index():
 def get_videos(category, page_number):
     """
     This function will show the videos with and without filtering, by creating a query_filter string that will be used to retrieve the right videos.
-    If there is no POST request, the filter is simply the category or empty if no category. 
+    If there is no POST request, the filter is simply the category or empty if no category.
     """
     query_arr = []
     query_filter=''
@@ -50,24 +50,23 @@ def get_videos(category, page_number):
         append_to_query('category_name', query_arr)
         append_to_query('body_part_name', query_arr)
         append_to_query('language_name', query_arr)
-        
+
         if len(query_arr) == 0:
             query_filter = ""
-        else: 
+        else:
             query_filter = {'$and':query_arr}
-    
-    if query_filter == '': 
+
+    if query_filter == '':
         if category != "all":
             query_filter = {'category_name':category}
-    
-    #Create a dict to identify in the template what was selected 
+
+    #Create a dict to identify in the template what was selected
     selected = {
         'category_name': request.form.getlist("category_name") or [],
         'body_part_name': request.form.getlist("body_part_name") or [],
         'language_name': request.form.getlist("language_name") or [],
     }
-    print(selected)
-    
+
     #Retrieve the filtered videos (or all) and the right amount of videos for pagination
     skips = 9*(int(page_number)-1)
 
@@ -87,7 +86,6 @@ def get_videos(category, page_number):
                             number_of_pages=number_of_pages,
                             page_number=page_number,
                             selected=selected)
-
 
 @app.route("/add_video")
 def add_video():

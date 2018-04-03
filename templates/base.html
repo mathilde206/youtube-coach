@@ -74,8 +74,10 @@
             $('select').material_select();
             $(".button-collapse").sideNav();
             $(".dropdown-button").dropdown();
+            $('.collapsible').collapsible({
+                accordion : true
+            });
         });
-        
         
         $('.datepicker').pickadate({
             selectMonths: true, // Creates a dropdown to control month

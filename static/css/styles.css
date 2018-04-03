@@ -107,6 +107,11 @@ header .dropdown-content {
   background-color: #006699; }
   .get_videos button.btn:hover, .get_videos button.btn:active, .get_videos button.btn:focus {
     background-color: #1da7f5; }
+.get_videos .mobile-filter button.dropdown-button {
+  width: 100%; }
+.get_videos .mobile-filter ul#dropdown1 {
+  padding: 20px;
+  height: 50vh; }
 
 /*Home Page*/
 .home-page h3 {
