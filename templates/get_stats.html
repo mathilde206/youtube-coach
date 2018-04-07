@@ -1,0 +1,71 @@
+{% extends 'base.html'%} 
+
+{% block content %}
+<div class='row'>
+    <div class='col s12 m4'>
+        <div class="card">
+            <h5>Top 3 Contributors</h5>
+            <ul class="collection">
+                {% for contributor in top_contributors %}
+                    <a href="#">
+                        <li class="collection-item">{{contributor._id}}</li>
+                    </a>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class='col s12 m4'>    
+        <div class="card">
+            <h5>Most Liked Videos </h5>
+            <ul class="collection">
+                {% for video in top_liked_videos %}
+                    <a href="{{video_url}}">
+                        <li class="collection-item avatar">
+                            <img src="{{video.thumbnails.small}}" alt="{{video.title}}" class="circle">
+                            <span class="title">{{video.video_title}}</span>
+                        </li>
+                    </a>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class='col s12 m4'>    
+        <div class="card">
+            <h5>Most Liked Videos </h5>
+            <ul class="collection">
+                {% for youtuber in top_youtubers %}
+                    <a href="#">
+                        <li class="collection-item avatar">
+                            <img src="" alt="{{youtuber}}" class="circle">
+                            <span class="title">{{youtuber._id}}</span>
+                        </li>
+                    </a>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+        
+</div>
+
+<div class="row">
+    <div class="col s12 m6">
+      <div class="card">
+          <div id="by_number_of_videos"></div>
+      </div>
+    </div>
+</div>
+
+<!--<ul>-->
+<!--    {% for youtuber in top_youtubers %}-->
+<!--        <li>{{youtuber}}</li>-->
+<!--    {% endfor %}-->
+<!--</ul>-->
+
+
+<script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+<script type="text/javascript" src="static/js/stats.js"></script>
+<script type="text/javascript">
+    makeBarChart({{data|safe}}, "#by_number_of_videos")
+
+</script>
+{% endblock %}

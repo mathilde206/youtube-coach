@@ -35,8 +35,9 @@ def youtube_search(vid_id):
             'large': video_response['items'][0]['snippet']['thumbnails']['high']['url']
             },
         'YT_popularity': {
-            'like_count': video_response['items'][0]['statistics']['likeCount'],
-            'view_count':intcomma(video_response['items'][0]['statistics']['viewCount'])
+            'like_count': int(float(video_response['items'][0]['statistics']['likeCount'])),
+            'view_count': int(float(video_response['items'][0]['statistics']['viewCount'])),
+            'view_count_human_readable':intcomma(video_response['items'][0]['statistics']['viewCount'])
             }
         }, 
     

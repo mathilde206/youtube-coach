@@ -17,7 +17,11 @@ app.config['MONGO_URI'] = config.MONGO_URI
 mongo = PyMongo(app)
 
 
+#Functions that build the query from the form for the filtering functionality
 def get_mongo_search_query(value, search_query):
+    """
+    This function takes the search criteria selected by the user and creates the appropriate query string for mongodb
+    """
     if len(search_query) == 1:
         return {value: search_query[0]}
     else:
@@ -27,10 +31,86 @@ def get_mongo_search_query(value, search_query):
         return {'$or': arr}
 
 def append_to_query(value, query_arr):
+    """
+    This function appends to a query string the values selected by the user to filter the search
+    """
     if request.form.get(value):
             category_name_query = get_mongo_search_query(value, request.form.getlist(value))
             return query_arr.append(category_name_query)
 
+
+#Functions that build the query from the form for the filtering functionality
+def numb_of_videos(filter_name):
+    """
+    Gets the number of videos, aggregated by filter_name (category, body_part,..)
+    """
+    return mongo.db.videos.aggregate([
+                            {
+                                "$unwind": "$"+filter_name
+                            },
+                            {"$group": {
+                                "_id": "$" + filter_name, 
+                                "number_of_videos": {"$sum": 1}
+                            }}, 
+                            {"$sort":
+                                {"number_of_videos":1}
+                                
+                            },
+                            ])
+    
+def numb_of_likes(filter_name):
+    """
+    Gets the number of videos, aggregated by filter_name (category, body_part,..)
+    """
+    return mongo.db.videos.aggregate([
+                            {
+                                "$unwind": "$"+filter_name
+                            },
+                            {
+                                "$group": {
+                                    "_id": "$" + filter_name, 
+                                    "number_of_likes": {"$sum": "$number_of_likes"}
+                                    }
+                            }, 
+                            {
+                                "$sort":{"number_of_likes":1}
+                            }
+                            ]) 
+
+def get_youtube_views(filter_name):
+    """
+    Gets the number of videos, aggregated by filter_name (category, body_part,..)
+    """
+    return mongo.db.videos.aggregate([
+                            {
+                                "$unwind": "$"+filter_name
+                            },
+                            {
+                                "$group": {
+                                    "_id": "$" + filter_name, 
+                                    "number_of_views": {"$sum": "$YT_popularity.view_count"}
+                                    }
+                            }, 
+                            {
+                                "$sort":{"number_of_views":1}
+                            }
+                            ]) 
+                            
+def get_duration(filter_name):
+    """
+    Gets the number of videos, aggregated by filter_name (category, body_part,..)
+    """
+    return mongo.db.videos.aggregate([
+                            {
+                                "$group": {
+                                    "_id": "$" + filter_name, 
+                                    "duration": {"$sum": "$duration.seconds"}
+                                    }
+                            }, 
+                            {
+                                "$sort":{"duration":1}
+                            }
+                            ]) 
 
 @app.route("/")
 def index():
@@ -45,6 +125,7 @@ def get_videos(category, page_number):
     """
     query_arr = []
     query_filter=''
+
 
     if request.method == "POST":
         append_to_query('category_name', query_arr)
@@ -196,6 +277,63 @@ def update_video(video_id):
 
     return redirect(url_for('get_videos', category="all", page_number=1))
 
+
+@app.route("/get_stats")
+def get_stats():
+    # The first 3 variables get top 3 data 
+    top_contributors = mongo.db.videos.aggregate([
+                            {"$group": {"_id": "$contributor_username", "number_of_videos": {"$sum": 1}}}, 
+                            {"$sort":{"number_of_videos":1}},
+                            {"$limit": 3}
+                            ])
+                            
+    top_liked_videos = mongo.db.videos.find().sort( "number_of_likes", -1).limit(3)
+    
+    top_youtubers = mongo.db.videos.aggregate([
+                            {"$group": {"_id": "$youtuber", "number_of_videos": {"$sum": 1}}}, 
+                            {"$sort":{"number_of_videos":1}},
+                            {"$limit": 3}
+                            ])
+                            
+    # Gather the data for the graphs
+    videos_by_category = numb_of_videos('category_name')
+    videos_by_body_part = numb_of_videos('body_part_name')
+    videos_by_language = numb_of_videos('language_name')
+    
+    likes_by_category = numb_of_likes('category_name')
+    likes_by_body_part = numb_of_likes('body_part_name')
+    likes_by_language = numb_of_likes('language_name')
+    
+    youtube_views_by_category = get_youtube_views('category_name')
+    youtube_views_by_body_part = get_youtube_views('body_part_name')
+    youtube_views_by_language = get_youtube_views('language_name')
+    
+    duration_by_category = get_duration('category_name')
+    duration_by_body_part = get_duration('body_part_name')
+    duration_by_language= get_duration('language_name')
+                            
+    def get_json_for_d3(data):
+        arr = []
+        for document in data:
+            arr.append(document)
+        return arr
+                        
+    return render_template('get_stats.html', 
+                            top_contributors = top_contributors,
+                            top_liked_videos=top_liked_videos,
+                            top_youtubers=top_youtubers,
+                            videos_by_category=get_json_for_d3(videos_by_category),
+                            videos_by_body_part=get_json_for_d3(videos_by_body_part),
+                            videos_by_language=get_json_for_d3(videos_by_language),
+                            likes_by_category=get_json_for_d3(likes_by_category),
+                            likes_by_body_part=get_json_for_d3(likes_by_body_part),
+                            likes_by_language = get_json_for_d3(likes_by_language),
+                            youtube_views_by_category =youtube_views_by_category ,
+                            youtube_views_by_body_part = youtube_views_by_body_part ,
+                            youtube_views_by_language = youtube_views_by_language,
+                            duration_by_category = duration_by_category ,
+                            duration_by_body_part = duration_by_body_part,
+                            duration_by_language=duration_by_language)
 
 if __name__ == "__main__":
     app.run(host= os.environ.get("IP"), 
