@@ -329,12 +329,25 @@ def get_stats():
                                 {
                                     "from": "youtubers",
                                     "localField": "youtuber[channel_Id]",
-                                    "foreignField": "channel_id",
-                                    "as": "thumbnails"
+                                    "foreignField": "videos.channel_id",
+                                    "as": "youtuber_info"
                                 }
-                            }
+                            },
+                            {
+                                "$unwind": { "path": "$youtuber_info" }
+                            },
+                            {
+                                "$project" : { 
+                                    "_id" : 1, 
+                                    "number_of_videos": 1,
+                                    "youtuber_info": 1,
+                                    "areIdsSame": {"$eq" : [ "$_id", "$youtuber_info.channel_title" ]}
+                                }
+                            },
+                            { "$match" : { "areIdsSame" : True } } 
                             ])
                             
+
     # Gather the data for the graphs
     videos_by_category = numb_of_videos('category_name')
     videos_by_body_part = numb_of_videos('body_part_name')
@@ -357,7 +370,7 @@ def get_stats():
         for document in data:
             arr.append(document)
         return arr
-                        
+        
     return render_template('get_stats.html', 
                             top_contributors = top_contributors,
                             top_liked_videos=top_liked_videos,

@@ -1,7 +1,7 @@
 {% extends 'base.html'%} 
 
 {% block content %}
-<div class='row'>
+<div class='row get-stats'>
     <div class='col s12 m4'>
         <div class="card">
             <h5>Top 3 Contributors</h5>
@@ -15,27 +15,28 @@
         </div>
     </div>
     <div class='col s12 m4'>    
-            <h5>Most Liked Videos </h5>
+        <div class="card">
+            <h5>Most Liked Videos</h5>
             <ul class="collection">
-                {% for video in youtuber_videos %}
-                    <a href="{{video_url}}">
+                {% for video in top_liked_videos %}
+                    <a href="{{url_for('get_detail', video_id='_id')}}">
                         <li class="collection-item avatar">
-                            <img src="{{video.thumbnails.small}}" alt="{{video.title}}" class="circle">
-                            <span class="title">{{video.video_title}}</span>
+                            <img src="{{video['thumbnails']['small']}}" alt="{{video['video_title']}}" class="circle">
+                            <span class="title">{{video['video_title']}}</span>
                         </li>
                     </a>
                 {% endfor %}
             </ul>
-
+        </div>
     </div>
     <div class='col s12 m4'>    
         <div class="card">
-            <h5>Most Liked Videos </h5>
+            <h5>Most Featured Youtubers </h5>
             <ul class="collection">
                 {% for youtuber in top_youtubers %}
-                    <a href="{{url_for('get_youtuber_detail', channel_id=youtuber['thumbnails'][0]['_id'])}}">
+                    <a href="{{url_for('get_youtuber_detail', channel_id=youtuber['youtuber_info']['_id'])}}">
                         <li class="collection-item avatar">
-                            <img src="{{youtuber['thumbnails'][0]['thumbnails']}}" alt="{{youtuber['_id']}}" class="circle">
+                            <img src="{{youtuber['youtuber_info']['thumbnails']}}" alt="{{youtuber['_id']}}" class="circle">
                             <span class="title">{{youtuber['_id']}}</span>
                         </li>
                     </a>
@@ -45,6 +46,10 @@
     </div>
         
 </div>
+
+{% for video in top_liked_videos %}
+    <h1>video</h1>
+{% endfor %}
 
 <div class="row">
     <div class="col s12 m6">
@@ -59,7 +64,7 @@
 <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
 <script type="text/javascript" src="static/js/stats.js"></script>
 <script type="text/javascript">
-    makeBarChart({{data|safe}}, "#by_number_of_videos")
+    makeBarChart({{likes_by_category|safe}}, "#by_number_of_videos")
 
 </script>
 {% endblock %}
