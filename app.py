@@ -5,7 +5,7 @@ from urllib.parse import urlparse, parse_qs
 from flask import Flask, render_template, url_for, request, redirect
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
-from get_video_info import youtube_search, get_video_id_from_url
+from get_video_info import youtube_search, get_video_id_from_url, get_channel_info
 from googleapiclient.errors import HttpError
 
 import config
@@ -178,40 +178,72 @@ def add_video():
 
 @app.route("/insert_video", methods=["POST"])
 def insert_video():
+    # First we add the video if it doesn't exist yet 
+    # TODO: Add some message to the user if video already exist (ex: they can update it?)
     video_id = get_video_id_from_url(request.form.get('video_url'))
-
-    try:
-        youtube_data = youtube_search(video_id)[0]
-        new_video = {
-            "_id":video_id,
-            "video_url" : request.form.get("video_url"),
-            "video_description": request.form.get("video_description"),
-            "category_name": request.form.get("category_name"),
-            "language_name":request.form.get("language_name"),
-            "body_part_name":request.form.getlist('body_part_name'),
-            "contributor_username":request.form.get("contributor_username"),
-
-            "video_title" : youtube_data['video_title'],
-            "youtuber":youtube_data['youtuber'],
-            "published_at":youtube_data["published_at"],
-            "YT_popularity":youtube_data["YT_popularity"],
-            "duration":youtube_data["duration"],
-            "thumbnails":youtube_data["thumbnails"]
-        }
+    if not mongo.db.videos.find_one({'_id': video_id}): 
         try:
-            mongo.db.videos.insert(new_video)
-        except:
-           print("There was a problem with mongoDB")
+            youtube_data = youtube_search(video_id)[0]
+            new_video = {
+                "_id":video_id,
+                "video_url" : request.form.get("video_url"),
+                "video_description": request.form.get("video_description"),
+                "category_name": request.form.get("category_name"),
+                "language_name":request.form.get("language_name"),
+                "body_part_name":request.form.getlist('body_part_name'),
+                "contributor_username":request.form.get("contributor_username"),
+    
+                "video_title" : youtube_data['video_title'],
+                "youtuber":youtube_data['youtuber'],
+                "published_at":youtube_data["published_at"],
+                "YT_popularity":youtube_data["YT_popularity"],
+                "duration":youtube_data["duration"],
+                "thumbnails":youtube_data["thumbnails"]
+            }
+            
+            try:
+                mongo.db.videos.insert(new_video)
+                
+            except:
+               print("There was a problem with mongoDB")
+        
+        except HttpError as e:
+            print('An HTTP error %d occurred:\n%s' % (e.resp.status, e.content))
 
-    except HttpError as e:
-        print('An HTTP error %d occurred:\n%s' % (e.resp.status, e.content))
+    # Next we try to add the youtuber if he doesn't exist yet
+    new_video = mongo.db.videos.find_one({"_id":video_id})
+    if not mongo.db.youtubers.find_one({'_id': new_video['youtuber']['channel_Id']}):
+        try:
+            new_youtuber = get_channel_info(new_video['youtuber']['channel_Id'])
+            mongo.db.youtubers.insert(new_youtuber)
+            
+        except HttpError as e:
+            print('An HTTP error %d occurred:\n%s' % (e.resp.status, e.content))
 
     return redirect(url_for('get_videos', category="all", page_number=1))
     
-
 @app.route('/get_detail/<video_id>')
 def get_detail(video_id):
     return render_template("get_detail.html", video=mongo.db.videos.find_one({"_id": video_id}))
+    
+@app.route('/get_youtuber_detail/<channel_id>')
+def get_youtuber_detail(channel_id):
+    youtuber_videos = mongo.db.videos.find({"youtuber.channel_Id": channel_id})
+    
+    return render_template("get_youtuber_detail.html", 
+                            youtuber=mongo.db.youtubers.find_one({"_id": channel_id}),
+                            youtuber_videos=youtuber_videos,
+                            total_videos=youtuber_videos.count())
+
+@app.route('/get_contributor_detail/<contributor_username>')
+def get_contributor_detail(contributor_username):
+    contributor_videos = mongo.db.videos.find({"contributor_username": contributor_username})
+    
+    return render_template("get_contributor_detail.html",
+                            contributor_username=contributor_username,
+                            contributor_videos=contributor_videos,
+                            total_videos=contributor_videos.count())
+    
 
 @app.route("/like_video/<video_id>", methods=["POST"])
 def like_video(video_id):
@@ -290,9 +322,17 @@ def get_stats():
     top_liked_videos = mongo.db.videos.find().sort( "number_of_likes", -1).limit(3)
     
     top_youtubers = mongo.db.videos.aggregate([
-                            {"$group": {"_id": "$youtuber", "number_of_videos": {"$sum": 1}}}, 
+                            {"$group": {"_id": "$youtuber.title", "number_of_videos": {"$sum": 1}}}, 
                             {"$sort":{"number_of_videos":1}},
-                            {"$limit": 3}
+                            {"$limit": 3},
+                            {"$lookup":
+                                {
+                                    "from": "youtubers",
+                                    "localField": "youtuber[channel_Id]",
+                                    "foreignField": "channel_id",
+                                    "as": "thumbnails"
+                                }
+                            }
                             ])
                             
     # Gather the data for the graphs

@@ -7,7 +7,7 @@
             <h5>Top 3 Contributors</h5>
             <ul class="collection">
                 {% for contributor in top_contributors %}
-                    <a href="#">
+                    <a href="{{url_for('get_contributor_detail', contributor_username=contributor._id)}}">
                         <li class="collection-item">{{contributor._id}}</li>
                     </a>
                 {% endfor %}
@@ -15,10 +15,9 @@
         </div>
     </div>
     <div class='col s12 m4'>    
-        <div class="card">
             <h5>Most Liked Videos </h5>
             <ul class="collection">
-                {% for video in top_liked_videos %}
+                {% for video in youtuber_videos %}
                     <a href="{{video_url}}">
                         <li class="collection-item avatar">
                             <img src="{{video.thumbnails.small}}" alt="{{video.title}}" class="circle">
@@ -27,17 +26,17 @@
                     </a>
                 {% endfor %}
             </ul>
-        </div>
+
     </div>
     <div class='col s12 m4'>    
         <div class="card">
             <h5>Most Liked Videos </h5>
             <ul class="collection">
                 {% for youtuber in top_youtubers %}
-                    <a href="#">
+                    <a href="{{url_for('get_youtuber_detail', channel_id=youtuber['thumbnails'][0]['_id'])}}">
                         <li class="collection-item avatar">
-                            <img src="" alt="{{youtuber}}" class="circle">
-                            <span class="title">{{youtuber._id}}</span>
+                            <img src="{{youtuber['thumbnails'][0]['thumbnails']}}" alt="{{youtuber['_id']}}" class="circle">
+                            <span class="title">{{youtuber['_id']}}</span>
                         </li>
                     </a>
                 {% endfor %}
@@ -55,11 +54,6 @@
     </div>
 </div>
 
-<!--<ul>-->
-<!--    {% for youtuber in top_youtubers %}-->
-<!--        <li>{{youtuber}}</li>-->
-<!--    {% endfor %}-->
-<!--</ul>-->
 
 
 <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>

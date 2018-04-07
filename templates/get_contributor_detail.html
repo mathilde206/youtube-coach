@@ -1,0 +1,21 @@
+{% extends 'base.html'%} 
+
+{% block content %}
+<div class="container video-details">
+    <h4>{{contributor_username}}</h4>
+    <span>Total Videos</span> {{total_videos}} videos added
+
+    
+    <h5>The Videos</h5>
+    <ul class="collection">
+        {% for video in contributor_videos %}
+            <li class="collection-item avatar">
+                <img src="{{video.thumbnails.small}}" alt="{{video.video_title}}">
+                <a href="{{url_for('get_detail', video_id=video._id)}}"><span class="title truncate">{{video.video_title}}</span></a>
+            </li>
+        {% endfor %}
+      </ul>
+
+
+
+{% endblock %}

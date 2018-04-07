@@ -12,10 +12,10 @@ DEVELOPER_KEY = 'AIzaSyA-HP_X6A6Gp15rbv4VGSnJJSg_9UdUPG0'
 YOUTUBE_API_SERVICE_NAME = 'youtube'
 YOUTUBE_API_VERSION = 'v3'
 
-def youtube_search(vid_id):
-    youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION,
+youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION,
         developerKey=DEVELOPER_KEY)
-    
+
+def youtube_search(vid_id):
     video_response = youtube.videos().list(
         id=vid_id,
         part='contentDetails,snippet,statistics'
@@ -29,7 +29,10 @@ def youtube_search(vid_id):
             },
         'published_at':isodate.parse_date(video_response['items'][0]['snippet']['publishedAt']).isoformat(),
         'video_title': video_response['items'][0]['snippet']['title'],
-        'youtuber': video_response['items'][0]['snippet']['channelTitle'],
+        'youtuber': {
+            'title': video_response['items'][0]['snippet']['channelTitle'],
+            'channel_Id': video_response['items'][0]['snippet']['channelId']
+            },
         'thumbnails': { 
             'small': video_response['items'][0]['snippet']['thumbnails']['default']['url'],
             'large': video_response['items'][0]['snippet']['thumbnails']['high']['url']
@@ -55,10 +58,31 @@ def get_video_id_from_url(url):
     
     return video_id
 
+def get_channel_info(channel_Id):
+    channel_response = youtube.channels().list(
+        id=channel_Id,
+        part='contentDetails,snippet,statistics'
+    ).execute()
+    
+    result = {
+        '_id': channel_response['items'][0]['id'],
+        'channel_title': channel_response['items'][0]['snippet']['title'],
+        'channel_description': channel_response['items'][0]['snippet']['description'],
+        'channel_url': 'https://www.youtube.com/channel/' + channel_response['items'][0]['id'],
+        'thumbnails': channel_response['items'][0]['snippet']['thumbnails']['default']['url'],
+        'stats': {
+            'view_count': channel_response['items'][0]['statistics']['viewCount'],
+            'video_count': channel_response['items'][0]['statistics']['videoCount']
+        }
+    
+    } 
+    return result
+    
+
 if __name__ == '__main__':
 
   try:
-    result = youtube_search('pyFNz8zJSdw')
+    result = get_channel_info('UCIJwWYOfsCfz6PjxbONYXSg')
     print(result)
   except HttpError as e:
     print('An HTTP error %d occurred:\n%s' % (e.resp.status, e.content))
