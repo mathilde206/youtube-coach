@@ -17,10 +17,8 @@ $highlight-blue-lighter:#1da7f5;
 $gray:#CCCCCC;
 $light-gray: #fcfcfc;
 
-$font-titles: 'Permanent Marker',
-cursive;
-$font-text: 'Ubuntu',
-sans-serif;
+$font-titles: 'Permanent Marker', cursive;
+$font-text: 'Ubuntu', sans-serif;
 
 $small-screen-up: 601px !default;
 $medium-and-up: "only screen and (min-width : #{$small-screen-up})" !default;
@@ -280,7 +278,7 @@ header {
 
 /*Get Details Page*/
 
-.video-details {
+.details {
 
     h4 {
         color: $highlight;
@@ -290,7 +288,29 @@ header {
         color: $highlight-blue;
         margin: 20px;
     }
-
+    
+    .subline{
+        text-align:center;
+        font-size:1.2em;
+        
+        span{
+            color:$highlight;
+            font-family:$font-titles;
+            font-size:1.4em;
+        }
+        
+    }
+    .collection .row{
+           margin-bottom : 0px;
+    }
+    .detail-text{
+        font-family:$font-text;
+    }
+    
+    .collection p{
+        color:$main-black;    
+    }
+    
     .card {
         display: flex;
         justify-content: center;
@@ -317,19 +337,21 @@ header {
             }
         }
     }
+}
 
-
-
-
-
-
-    /*Stats Page*/
-    video-stats {
-        display: flex;
+/*Stats Page*/
+.get-stats{
+    .collection-header h5{
+        font-family: $font-titles;
+        size:1.3rem;
+        color: $highlight;
+        text-align: center;
     }
 }
 
-
+/*Stats Page*/
+.contributor-details {
+}
 
 
 /*Pagination & Footer*/

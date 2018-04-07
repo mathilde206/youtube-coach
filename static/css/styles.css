@@ -135,33 +135,50 @@ header .dropdown-content {
     text-decoration: none; }
 
 /*Get Details Page*/
-.video-details {
-  /*Stats Page*/ }
-  .video-details h4 {
+.details h4 {
+  color: #996699;
+  text-align: center; }
+.details h5 {
+  color: #006699;
+  margin: 20px; }
+.details .subline {
+  text-align: center;
+  font-size: 1.2em; }
+  .details .subline span {
     color: #996699;
-    text-align: center; }
-  .video-details h5 {
+    font-family: "Permanent Marker", cursive;
+    font-size: 1.4em; }
+.details .collection .row {
+  margin-bottom: 0px; }
+.details .detail-text {
+  font-family: "Ubuntu", sans-serif; }
+.details .collection p {
+  color: #151515; }
+.details .card {
+  display: flex;
+  justify-content: center;
+  padding: 10px; }
+.details ul li {
+  margin-bottom: 5px; }
+  .details ul li span {
+    color: #996699;
+    font-family: "Permanent Marker", cursive;
+    letter-spacing: 2px;
+    margin-right: 10px; }
+  .details ul li a {
     color: #006699;
-    margin: 20px; }
-  .video-details .card {
-    display: flex;
-    justify-content: center;
-    padding: 10px; }
-  .video-details ul li {
-    margin-bottom: 5px; }
-    .video-details ul li span {
-      color: #996699;
-      font-family: "Permanent Marker", cursive;
-      letter-spacing: 2px;
-      margin-right: 10px; }
-    .video-details ul li a {
-      color: #006699;
-      cursor: pointer; }
-      .video-details ul li a:hover, .video-details ul li a:active, .video-details ul li a:focus {
-        color: #a22aa5; }
-  .video-details video-stats {
-    display: flex; }
+    cursor: pointer; }
+    .details ul li a:hover, .details ul li a:active, .details ul li a:focus {
+      color: #a22aa5; }
 
+/*Stats Page*/
+.get-stats .collection-header h5 {
+  font-family: "Permanent Marker", cursive;
+  size: 1.3rem;
+  color: #996699;
+  text-align: center; }
+
+/*Stats Page*/
 /*Pagination & Footer*/
 .pagination li.active {
   background-color: #996699; }

@@ -381,12 +381,12 @@ def get_stats():
                             likes_by_category=get_json_for_d3(likes_by_category),
                             likes_by_body_part=get_json_for_d3(likes_by_body_part),
                             likes_by_language = get_json_for_d3(likes_by_language),
-                            youtube_views_by_category =youtube_views_by_category ,
-                            youtube_views_by_body_part = youtube_views_by_body_part ,
-                            youtube_views_by_language = youtube_views_by_language,
-                            duration_by_category = duration_by_category ,
-                            duration_by_body_part = duration_by_body_part,
-                            duration_by_language=duration_by_language)
+                            youtube_views_by_category =get_json_for_d3(youtube_views_by_category),
+                            youtube_views_by_body_part = get_json_for_d3(youtube_views_by_body_part),
+                            youtube_views_by_language = get_json_for_d3(youtube_views_by_language),
+                            duration_by_category = get_json_for_d3(duration_by_category),
+                            duration_by_body_part = get_json_for_d3(duration_by_body_part),
+                            duration_by_language=get_json_for_d3(duration_by_language))
 
 if __name__ == "__main__":
     app.run(host= os.environ.get("IP"), 
