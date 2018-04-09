@@ -75,12 +75,23 @@ header {
     nav {
         background-color: $main-black;
 
-        .nav-wrapper a {
+        .nav-wrapper {
+            a {
             color: $main-white;
 
-            &:hover {
-                color: $highlight-blue-lighter;
+                &:hover {
+                    color: $highlight-blue-lighter;
+                }
             }
+            
+            .side-nav{
+                background-color:$main-black;
+                
+                .subheader{
+                    color:$highlight;
+                }
+            }
+            
         }
 
     }

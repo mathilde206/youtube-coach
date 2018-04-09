@@ -39,6 +39,10 @@ header nav {
     color: #fafafa; }
     header nav .nav-wrapper a:hover {
       color: #1da7f5; }
+  header nav .nav-wrapper .side-nav {
+    background-color: #151515; }
+    header nav .nav-wrapper .side-nav .subheader {
+      color: #996699; }
 header .dropdown-content {
   background: #fafafa; }
   header .dropdown-content li a {
@@ -179,20 +183,20 @@ header .dropdown-content {
   text-align: center; }
 
 /*Stats Page*/
-svg .canvas {
+svg {
   background-color: #fafafa; }
-svg .axis text {
-  font: 10px sans-serif; }
-svg .axis path, svg .axis line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges; }
-svg .svg-title {
-  font-size: 1.2em;
-  text-align: center;
-  font-family: "Permanent Marker", cursive; }
-svg .rectangles {
-  fill: #996699; }
+  svg .axis text {
+    font: 10px sans-serif; }
+  svg .axis path, svg .axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges; }
+  svg .svg-title {
+    font-size: 1.2em;
+    text-align: center;
+    font-family: "Permanent Marker", cursive; }
+  svg .rectangles {
+    fill: #996699; }
 
 path
 .x.axis line {
