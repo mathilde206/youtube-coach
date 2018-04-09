@@ -158,12 +158,16 @@ def get_videos(category, page_number):
         videos=mongo.db.videos.find(query_filter).skip(skips).limit(9)
         number_of_pages= math.ceil(mongo.db.videos.count(query_filter)/9)
 
+# TODO:must be a better way to solve the macro problem than add twice...
     return render_template("get_videos.html",
                             videos=videos,
                             category=category,
                             categories= mongo.db.categories.find(),
+                            categories2=mongo.db.categories.find(),
                             targetted_body_parts=mongo.db.targetted_body_parts.find(),
+                            targetted_body_parts2=mongo.db.targetted_body_parts.find(),
                             languages=mongo.db.languages.find(),
+                            languages2=mongo.db.languages.find(),
                             number_of_pages=number_of_pages,
                             page_number=page_number,
                             selected=selected)
@@ -387,6 +391,12 @@ def get_stats():
                             duration_by_category = get_json_for_d3(duration_by_category),
                             duration_by_body_part = get_json_for_d3(duration_by_body_part),
                             duration_by_language=get_json_for_d3(duration_by_language))
+                            
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
+    
+
 
 if __name__ == "__main__":
     app.run(host= os.environ.get("IP"), 

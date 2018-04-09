@@ -1,59 +1,59 @@
-{% macro filters(category=category, body_part=body_part, language=language ) %}
+{% macro filters(categories=categories, targetted_body_parts=targetted_body_parts, languages=languages ) %}
     <form method="POST" action="{{ url_for('get_videos', category='all', page_number=1) }}">
-    <h6>Category</h6>
-    {% for category in categories%}
-    <p>
-      <input id="{{category.category_name}}" 
-              name="category_name" 
-              value="{{category.category_name}}" 
-              type="checkbox"
-              {% if category.category_name in selected.category_name%}
-                checked="checked"
-              {% endif %}
-      />
-      <label for="{{category.category_name}}">
-          <span>{{category.category_name}}</span>
-      </label>
-    </p>
-    {% endfor %}
-    <hr>
-    <h6>Body Part</h6>
-    {% for body_part in targetted_body_parts%}
-    <p>
-      <input id="{{body_part.body_part_name}}" 
-              name="body_part_name" 
-              value="{{body_part.body_part_name}}" 
-              type="checkbox" 
-              {% if body_part.body_part_name in selected.body_part_name%}
-                checked="checked"
-              {% endif %}
-      />
-      <label for="{{body_part.body_part_name}}">
-          <span>{{body_part.body_part_name}}</span>
-      </label>
-    </p>
-    {% endfor %}
-    <hr>
-    <h6>Language</h6>
-    {% for language in languages%}
-    <p>
-      <input id="{{language.language_name}}" 
-              name="language_name" 
-              value="{{language.language_name}}" 
-              type="checkbox" 
-              {% if language.language_name in selected.language_name %}
-                checked="checked"
-              {% endif %}
-      />
-      <label for="{{language.language_name}}">
-          <span>{{language.language_name}}</span>
-      </label>
-    </p>
-    {% endfor %}
-    <hr>
-    <button type="submit" class="waves-effect waves-light btn" name="action">
-      <i class="material-icons">search</i>
-    </button>
+      <h6>Category</h6>
+      {% for category in categories%}
+      <p>
+        <input id="{{category.category_name}}" 
+                name="category_name" 
+                value="{{category.category_name}}" 
+                type="checkbox"
+                {% if category.category_name in selected.category_name%}
+                  checked="checked"
+                {% endif %}
+        />
+        <label for="{{category.category_name}}">
+            <span>{{category.category_name}}</span>
+        </label>
+      </p>
+      {% endfor %}
+      <hr>
+      <h6>Body Part</h6>
+      {% for body_part in targetted_body_parts%}
+      <p>
+        <input id="{{body_part.body_part_name}}" 
+                name="body_part_name" 
+                value="{{body_part.body_part_name}}" 
+                type="checkbox" 
+                {% if body_part.body_part_name in selected.body_part_name%}
+                  checked="checked"
+                {% endif %}
+        />
+        <label for="{{body_part.body_part_name}}">
+            <span>{{body_part.body_part_name}}</span>
+        </label>
+      </p>
+      {% endfor %}
+      <hr>
+      <h6>Language</h6>
+      {% for language in languages%}
+      <p>
+        <input id="{{language.language_name}}" 
+                name="language_name" 
+                value="{{language.language_name}}" 
+                type="checkbox" 
+                {% if language.language_name in selected.language_name %}
+                  checked="checked"
+                {% endif %}
+        />
+        <label for="{{language.language_name}}">
+            <span>{{language.language_name}}</span>
+        </label>
+      </p>
+      {% endfor %}
+      <hr>
+      <button type="submit" class="waves-effect waves-light btn" name="action">
+        <i class="material-icons">search</i>
+      </button>
   </form>
 {% endmacro %}
 
@@ -78,13 +78,12 @@
         <div class="col s12 m2 hide-on-small-only">
           <h5>Filter results</h5>
           <div>
-            {{ filters(category=category, body_part=body_part, language=language) }} 
+            {{ filters(categories=categories, targetted_body_parts=targetted_body_parts, languages=languages) }} 
           </div>
         </div>
       
-        <!--FIX ME: filter macro working only for the first time called / if not working, include code twices-->
         <ul id='dropdown1' class='dropdown-content'>
-          <li>{{ filters(category=category, body_part=body_part, language=language) }}</li>
+          <li>{{ filters(categories=categories2, targetted_body_parts=targetted_body_parts2, languages=languages2) }}</li>
         </ul>
         
         
