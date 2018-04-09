@@ -350,7 +350,48 @@ header {
 }
 
 /*Stats Page*/
-.contributor-details {
+svg {
+    background-color: $main-white;
+    
+    .axis text {
+        font: 10px sans-serif;
+    }
+ 
+    .axis path, .axis line {
+        fill: none;
+        stroke: #000;
+        shape-rendering: crispEdges;
+    }
+    .svg-title{
+        font-size:1.2em;
+        text-align:center;
+        font-family: $font-titles;
+    }
+    .rectangles{
+        fill:$highlight;
+    }
+}
+
+
+path
+
+
+.x.axis line {
+  stroke: #fff;
+}
+
+.x.axis .minor {
+  stroke-opacity: .5;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.y.axis line,
+.y.axis path {
+  fill: none;
+  stroke: #000;
 }
 
 

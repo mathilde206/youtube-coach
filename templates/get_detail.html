@@ -51,8 +51,7 @@
                 </a>
             </li>
             <li>
-                <!--TO DO : ADD LINK FOR USER DETAILS-->
-                <span>Added by</span> <a>{{video.contributor_username}}</a>
+            <span>Added by</span> <a href="{{url_for('get_contributor_detail', contributor_username=video.contributor_username )}}">{{video.contributor_username}}</a>
                 </a>
             </li>
             

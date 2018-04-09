@@ -179,6 +179,36 @@ header .dropdown-content {
   text-align: center; }
 
 /*Stats Page*/
+svg .canvas {
+  background-color: #fafafa; }
+svg .axis text {
+  font: 10px sans-serif; }
+svg .axis path, svg .axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges; }
+svg .svg-title {
+  font-size: 1.2em;
+  text-align: center;
+  font-family: "Permanent Marker", cursive; }
+svg .rectangles {
+  fill: #996699; }
+
+path
+.x.axis line {
+  stroke: #fff; }
+
+.x.axis .minor {
+  stroke-opacity: .5; }
+
+.x.axis path {
+  display: none; }
+
+.y.axis line,
+.y.axis path {
+  fill: none;
+  stroke: #000; }
+
 /*Pagination & Footer*/
 .pagination li.active {
   background-color: #996699; }

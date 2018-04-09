@@ -315,7 +315,7 @@ def get_stats():
     # The first 3 variables get top 3 data 
     top_contributors = mongo.db.videos.aggregate([
                             {"$group": {"_id": "$contributor_username", "number_of_videos": {"$sum": 1}}}, 
-                            {"$sort":{"number_of_videos":1}},
+                            {"$sort":{"number_of_videos":-1}},
                             {"$limit": 3}
                             ])
                             
@@ -323,7 +323,7 @@ def get_stats():
     
     top_youtubers = mongo.db.videos.aggregate([
                             {"$group": {"_id": "$youtuber.title", "number_of_videos": {"$sum": 1}}}, 
-                            {"$sort":{"number_of_videos":1}},
+                            {"$sort":{"number_of_videos":-1}},
                             {"$limit": 3},
                             {"$lookup":
                                 {
