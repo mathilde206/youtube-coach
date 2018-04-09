@@ -391,7 +391,11 @@ def get_stats():
                             duration_by_category = get_json_for_d3(duration_by_category),
                             duration_by_body_part = get_json_for_d3(duration_by_body_part),
                             duration_by_language=get_json_for_d3(duration_by_language))
-                            
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
+ 
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404

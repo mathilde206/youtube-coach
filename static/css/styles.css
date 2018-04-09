@@ -223,5 +223,9 @@ path
   .page-footer ul li {
     display: inline-block;
     margin-right: 30px; }
+    .page-footer ul li a {
+      color: #fafafa; }
+      .page-footer ul li a:hover, .page-footer ul li a:focus {
+        color: #996699; }
 
 /*# sourceMappingURL=styles.css.map */

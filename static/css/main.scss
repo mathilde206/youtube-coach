@@ -420,5 +420,13 @@ path
     ul li {
         display: inline-block;
         margin-right: 30px;
+        
+        a {
+            color:$main-white;
+            
+            &:hover, &:focus {
+                color:$highlight;
+            }
+        }
     }
 }
