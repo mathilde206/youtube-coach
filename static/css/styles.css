@@ -183,6 +183,9 @@ header .dropdown-content {
   text-align: center; }
 
 /*Stats Page*/
+.svg-card {
+  max-width: 500px; }
+
 svg {
   background-color: #fafafa; }
   svg .axis text {
@@ -197,21 +200,19 @@ svg {
     font-family: "Permanent Marker", cursive; }
   svg .rectangles {
     fill: #996699; }
+  svg .x.axis line {
+    stroke: #fff; }
+  svg .x.axis .minor {
+    stroke-opacity: .5; }
+  svg .x.axis path {
+    display: none; }
+  svg .y.axis line,
+  svg .y.axis path {
+    fill: none;
+    stroke: #000; }
 
-path
-.x.axis line {
-  stroke: #fff; }
-
-.x.axis .minor {
-  stroke-opacity: .5; }
-
-.x.axis path {
-  display: none; }
-
-.y.axis line,
-.y.axis path {
-  fill: none;
-  stroke: #000; }
+#select-data button {
+  margin-bottom: 20px; }
 
 /*Pagination & Footer*/
 .pagination li.active {

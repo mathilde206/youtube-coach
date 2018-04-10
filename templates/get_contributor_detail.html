@@ -11,10 +11,10 @@
         {% for video in contributor_videos %}
             <a href="{{url_for('get_detail', video_id=video._id)}}"><li class="collection-item avatar">
                 <div class="row">
-                    <div class="col m3">
-                        <img src="{{video.thumbnails.small}}" alt="{{video.video_title}}" />
+                    <div class="col s12 m5 l3">
+                        <img class='img-responsive' src="{{video.thumbnails.small}}" alt="{{video.video_title}}" />
                     </div>
-                    <div class="col m9">
+                    <div class="col s12 m7 l9">
                         <span class="detail-text truncate">{{video.video_title}}</span>
                         <p>{{video.video_description}}</p>
                     </div>

@@ -361,6 +361,10 @@ header {
 }
 
 /*Stats Page*/
+.svg-card {
+   max-width: 500px; 
+  
+}
 svg {
     background-color: $main-white;
     
@@ -381,28 +385,28 @@ svg {
     .rectangles{
         fill:$highlight;
     }
+    
+    .x.axis line {
+      stroke: #fff;
+    }
+    
+    .x.axis .minor {
+      stroke-opacity: .5;
+    }
+    
+    .x.axis path {
+      display: none;
+    }
+    
+    .y.axis line,
+    .y.axis path {
+      fill: none;
+      stroke: #000;
+    }
 }
 
-
-path
-
-
-.x.axis line {
-  stroke: #fff;
-}
-
-.x.axis .minor {
-  stroke-opacity: .5;
-}
-
-.x.axis path {
-  display: none;
-}
-
-.y.axis line,
-.y.axis path {
-  fill: none;
-  stroke: #000;
+#select-data button {
+    margin-bottom:20px;
 }
 
 
