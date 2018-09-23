@@ -1,20 +1,20 @@
 /*VARIABLES*/
 
-$font-stack : Helvetica,
+$font-stack: Helvetica,
 sans-serif;
 
 /*Colors*/
 
-$main-black : #151515;
-$main-white : #fafafa;
+$main-black: #151515;
+$main-white: #fafafa;
 
-$highlight:#996699;
+$highlight: #996699;
 $highlight-darker: #a22aa5;
 $highlight-blue: #006699;
-$highlight-blue-lighter:#1da7f5;
-$highlight-blue-lighter:#1da7f5;
+$highlight-blue-lighter: #1da7f5;
+$highlight-blue-lighter: #1da7f5;
 
-$gray:#CCCCCC;
+$gray: #CCCCCC;
 $light-gray: #fcfcfc;
 
 $font-titles: 'Permanent Marker', cursive;
@@ -57,7 +57,6 @@ main {
     }
 }
 
-
 .btn-floating {
     background-color: $highlight;
 
@@ -68,7 +67,6 @@ main {
     }
 }
 
-
 /*Nav-Bar*/
 
 header {
@@ -77,21 +75,21 @@ header {
 
         .nav-wrapper {
             a {
-            color: $main-white;
+                color: $main-white;
 
                 &:hover {
                     color: $highlight-blue-lighter;
                 }
             }
-            
-            .side-nav{
-                background-color:$main-black;
-                
-                .subheader{
-                    color:$highlight;
+
+            .side-nav {
+                background-color: $main-black;
+
+                .subheader {
+                    color: $highlight;
                 }
             }
-            
+
         }
 
     }
@@ -110,12 +108,8 @@ header {
             }
         }
 
-
     }
 }
-
-
-
 
 /*Forms*/
 
@@ -143,10 +137,9 @@ header {
         }
     }
 
-
     .input-field {
-        input[type=text]:focus+label,
-        textarea:focus+label {
+        input[type=text]:focus + label,
+        textarea:focus + label {
             color: $highlight;
         }
 
@@ -206,8 +199,6 @@ header {
     }
 }
 
-
-
 /*Get Videos Page*/
 
 .get_videos {
@@ -219,7 +210,7 @@ header {
     h5 {
         color: $highlight;
     }
-    
+
     button.btn {
         background-color: $highlight-blue;
 
@@ -229,25 +220,18 @@ header {
             background-color: $highlight-blue-lighter;
         }
     }
-    
-    .mobile-filter{
-        button.dropdown-button{
-            width:100%;
+
+    .mobile-filter {
+        button.dropdown-button {
+            width: 100%;
         }
-        
-        ul#dropdown1{
-            padding:20px;
-            height:50vh;
+
+        ul#dropdown1 {
+            padding: 20px;
+            height: 50vh;
         }
     }
 }
-
-
-
-
-
-
-
 
 /*Home Page*/
 
@@ -285,8 +269,6 @@ header {
 
 }
 
-
-
 /*Get Details Page*/
 
 .details {
@@ -299,29 +281,29 @@ header {
         color: $highlight-blue;
         margin: 20px;
     }
-    
-    .subline{
-        text-align:center;
-        font-size:1.2em;
-        
-        span{
-            color:$highlight;
-            font-family:$font-titles;
-            font-size:1.4em;
+
+    .subline {
+        text-align: center;
+        font-size: 1.2em;
+
+        span {
+            color: $highlight;
+            font-family: $font-titles;
+            font-size: 1.4em;
         }
-        
+
     }
-    .collection .row{
-           margin-bottom : 0px;
+    .collection .row {
+        margin-bottom: 0px;
     }
-    .detail-text{
-        font-family:$font-text;
+    .detail-text {
+        font-family: $font-text;
     }
-    
-    .collection p{
-        color:$main-black;    
+
+    .collection p {
+        color: $main-black;
     }
-    
+
     .card {
         display: flex;
         justify-content: center;
@@ -351,10 +333,10 @@ header {
 }
 
 /*Stats Page*/
-.get-stats{
-    .collection-header h5{
+.get-stats {
+    .collection-header h5 {
         font-family: $font-titles;
-        size:1.3rem;
+        size: 1.3rem;
         color: $highlight;
         text-align: center;
     }
@@ -362,60 +344,59 @@ header {
 
 /*Stats Page*/
 .svg-card {
-   max-width: 500px; 
-  
+    max-width: 500px;
+
 }
+
 svg {
     background-color: $main-white;
-    
+
     .axis text {
         font: 10px sans-serif;
     }
- 
+
     .axis path, .axis line {
         fill: none;
         stroke: #000;
         shape-rendering: crispEdges;
     }
-    .svg-title{
-        font-size:1.2em;
-        text-align:center;
+    .svg-title {
+        font-size: 1.2em;
+        text-align: center;
         font-family: $font-titles;
     }
-    .rectangles{
-        fill:$highlight;
+    .rectangles {
+        fill: $highlight;
     }
-    
+
     .x.axis line {
-      stroke: #fff;
+        stroke: #fff;
     }
-    
+
     .x.axis .minor {
-      stroke-opacity: .5;
+        stroke-opacity: .5;
     }
-    
+
     .x.axis path {
-      display: none;
+        display: none;
     }
-    
+
     .y.axis line,
     .y.axis path {
-      fill: none;
-      stroke: #000;
+        fill: none;
+        stroke: #000;
     }
 }
 
 #select-data button {
-    margin-bottom:20px;
+    margin-bottom: 20px;
 }
-
 
 /*Pagination & Footer*/
 
 .pagination li.active {
     background-color: $highlight;
 }
-
 
 .page-footer {
     margin-top: 40px;
@@ -424,12 +405,12 @@ svg {
     ul li {
         display: inline-block;
         margin-right: 30px;
-        
+
         a {
-            color:$main-white;
-            
+            color: $main-white;
+
             &:hover, &:focus {
-                color:$highlight;
+                color: $highlight;
             }
         }
     }

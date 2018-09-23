@@ -1,53 +1,53 @@
-{% extends 'base.html'%} 
+{% extends 'base.html' %}
 
 {% block content %}
-<div class="home-page">
-    <h3>What do you want to do ?</h3>
-    <div class="row">
-        <div class="col s12 m4">
-            <a href="{{url_for('get_videos', category='yoga', page_number=1)}}">
-                <div class="card hoverable">
-                    <div class="card-image">
-                        <img class="responsive-img activator" src="{{url_for('static', filename='imgs/yoga2.jpg')}}">
+    <div class="home-page">
+        <h3>What do you want to do ?</h3>
+        <div class="row">
+            <div class="col s12 m4">
+                <a href="{{ url_for('get_videos', category='yoga', page_number=1) }}">
+                    <div class="card hoverable">
+                        <div class="card-image">
+                            <img class="responsive-img activator" src="{{ url_for('static', filename='imgs/yoga2.jpg') }}">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-title activator">Yoga</span>
+                            <p>Explore the Videos</p>
+                        </div>
                     </div>
-                    <div class="card-content">
-                      <span class="card-title activator">Yoga</span>
-                      <p>Explore the Videos</p>
+                </a>
+            </div>
+            <div class="col s12 m4">
+                <a href="{{ url_for('get_videos', category='strength', page_number=1) }}">
+                    <div class="card img-bottom hoverable">
+                        <div class="card-content">
+                            <span class="card-title activator">Strength</span>
+                            <p>Explore the Videos</p>
+                        </div>
+                        <div class="card-image">
+                            <img class="responsive-img activator" src="{{ url_for('static', filename='imgs/weight.jpg') }}">
+                        </div>
                     </div>
-                </div>
-            </a>
+                </a>
+            </div>
+            <div class="col s12 m4">
+                <a href="{{ url_for('get_videos', category='cardio', page_number=1) }}">
+                    <div class="card hoverable">
+                        <div class="card-image">
+                            <img class="responsive-img activator" src="{{ url_for('static', filename='imgs/fitness.jpg') }}">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-title activator">Cardio</span>
+                            <p>Explore the Videos</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
         </div>
-        <div class="col s12 m4">
-            <a href="{{url_for('get_videos', category='strength', page_number=1)}}">
-                <div class="card img-bottom hoverable">
-                    <div class="card-content">
-                      <span class="card-title activator">Strength</span>
-                      <p>Explore the Videos</p>
-                    </div>
-                    <div class="card-image">
-                        <img class="responsive-img activator" src="{{url_for('static', filename='imgs/weight.jpg')}}">
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col s12 m4">
-            <a href="{{url_for('get_videos', category='cardio', page_number=1)}}">
-                <div class="card hoverable">
-                    <div class="card-image">
-                        <img class="responsive-img activator" src="{{url_for('static', filename='imgs/fitness.jpg')}}">
-                    </div>
-                    <div class="card-content">
-                      <span class="card-title activator">Cardio</span>
-                      <p>Explore the Videos</p>
-                    </div>
-                </div>
-            </a>
+
+        <div class="row">
+            <div class="col s12"></div>
         </div>
     </div>
-    
-    <div class="row">
-        <div class="col s12"></div>
-    </div>
-</div>
 {% endblock %}
 

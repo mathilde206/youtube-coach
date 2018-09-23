@@ -1,41 +1,41 @@
-{% extends 'base.html'%} 
+{% extends 'base.html' %}
 
 {% block content %}
-<div class="container details">
-    <a href="{{youtuber.channel_url}}"><h4>{{youtuber.channel_title}}</h4></a>
+    <div class="container details">
+        <a href="{{ youtuber.channel_url }}"><h4>{{ youtuber.channel_title }}</h4></a>
 
-    <div class="row">
-        <div class='col s12 m3'>
-            <img src="{{youtuber.thumbnails}}" alt="{{youtuber['_id']}}"/>
+        <div class="row">
+            <div class='col s12 m3'>
+                <img src="{{ youtuber.thumbnails }}" alt="{{ youtuber['_id'] }}" />
+            </div>
+            <div class='col s12 m9'>
+                <p>{{ youtuber.channel_description }}</p>
+                <p></p>
+            </div>
         </div>
-        <div class='col s12 m9'>
-            <p>{{youtuber.channel_description}}</p>
-            <p></p>
+
+        <div class="card">
+            <h5>About</h5>
+            <ul>
+                <li>
+                    <span>Total Videos</span> {{ total_videos }} videos featured
+                </li>
+                <li>
+                    <span>Total Views</span>{{ youtuber.stats.view_count }} views on Youtube
+                    </a>
+                </li>
+            </ul>
         </div>
-    </div>
-    
-    <div class="card">
-        <h5>About</h5>
-        <ul>
-            <li>
-                <span>Total Videos</span> {{total_videos}} videos featured
-            </li>
-            <li>
-                <span>Total Views</span>{{youtuber.stats.view_count}} views on Youtube
-                </a>
-            </li>
+
+        <h5>The Videos</h5>
+        <ul class="collection">
+            {% for video in youtuber_videos %}
+                <li class="collection-item avatar">
+                    <img src="{{ video.thumbnails.small }}" alt="{{ video.video_title }}">
+                    <a href="{{ url_for('get_detail', video_id=video._id) }}"><span class="title truncate">{{ video.video_title }}</span></a>
+                </li>
+            {% endfor %}
         </ul>
-    </div>
-    
-    <h5>The Videos</h5>
-    <ul class="collection">
-        {% for video in youtuber_videos %}
-            <li class="collection-item avatar">
-                <img src="{{video.thumbnails.small}}" alt="{{video.video_title}}">
-                <a href="{{url_for('get_detail', video_id=video._id)}}"><span class="title truncate">{{video.video_title}}</span></a>
-            </li>
-        {% endfor %}
-      </ul>
 
 
 

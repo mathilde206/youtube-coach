@@ -1,94 +1,93 @@
 {% extends 'base.html' %} {% block content %}
 
-<h3>Edit Video</h3>
-<div class="container">
-    <div class="row">
-        <div class="col s6 m3">
-            <a href="{{url_for('get_detail', video_id=video._id)}}"><img src="{{video.thumbnails.small}}"></img></a>
-        </div>
-        
-        <div class="col s6 m9">
-            <a href="{{url_for('get_detail', video_id=video._id)}}"><h6>{{video.video_title}}</h6></a>
+    <h3>Edit Video</h3>
+    <div class="container">
+        <div class="row">
+            <div class="col s6 m3">
+                <a href="{{ url_for('get_detail', video_id=video._id) }}"><img src="{{ video.thumbnails.small }}"></img></a>
+            </div>
+
+            <div class="col s6 m9">
+                <a href="{{ url_for('get_detail', video_id=video._id) }}"><h6>{{ video.video_title }}</h6></a>
+            </div>
         </div>
     </div>
-</div>
- 
 
-<div class="container-form z-depth-4">
-    <div class="row">    
-        <form name="add_video" method="POST" action="{{ url_for('update_video', video_id=video._id) }}" class="col s12 left-alert" >
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="material-icons prefix">ondemand_video</i>
-                    <input id="video_url" name="video_url" type="url" value={{video.video_url}}>
-                    <label for="video_url">Youtube URL *</label>
+
+    <div class="container-form z-depth-4">
+        <div class="row">
+            <form name="add_video" method="POST" action="{{ url_for('update_video', video_id=video._id) }}" class="col s12 left-alert">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">ondemand_video</i>
+                        <input id="video_url" name="video_url" type="url" value={{ video.video_url }}>
+                        <label for="video_url">Youtube URL *</label>
+                    </div>
                 </div>
-            </div>
-            <div class="error"></div>
-            
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="material-icons prefix">poll</i>
-                    <select id="category_name" name="category_name" required>
-                        <option value="" disabled selected>Choose a category</option>
-                        {% for cat in categories%}
-                            <option value="{{cat.category_name}}" {% if cat.category_name == video.category_name %} selected {% endif %}>{{cat.category_name}}</option>
-                        {% endfor %}
-                    </select>
-                    <label>Category *</label>
+                <div class="error"></div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">poll</i>
+                        <select id="category_name" name="category_name" required>
+                            <option value="" disabled selected>Choose a category</option>
+                            {% for cat in categories %}
+                                <option value="{{ cat.category_name }}" {% if cat.category_name == video.category_name %} selected {% endif %}>{{ cat.category_name }}</option>
+                            {% endfor %}
+                        </select>
+                        <label>Category *</label>
+                    </div>
                 </div>
-            </div>
-            
-    
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="material-icons prefix">subjects</i>
-                    <textarea id="video_description" name="video_description" class="materialize-textarea">{{video.video_description}} </textarea>
-                    <label for="video_description">Description</label>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">subjects</i>
+                        <textarea id="video_description" name="video_description" class="materialize-textarea">{{ video.video_description }} </textarea>
+                        <label for="video_description">Description</label>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="material-icons prefix">language</i>
-                    <select id="language_name" name="language_name" required>
-                        <option value="" disabled selected>Choose a language</option>
-                        {% for language in languages%}
-                            <option value="{{language.language_name}}" {% if language.language_name == video.language_name %} selected {% endif %}>{{language.language_name}}</option>
-                        {% endfor %}
-                    </select>
-                    <label>Language *</label>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">language</i>
+                        <select id="language_name" name="language_name" required>
+                            <option value="" disabled selected>Choose a language</option>
+                            {% for language in languages %}
+                                <option value="{{ language.language_name }}" {% if language.language_name == video.language_name %} selected {% endif %}>{{ language.language_name }}</option>
+                            {% endfor %}
+                        </select>
+                        <label>Language *</label>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="material-icons prefix">fitness_center</i>
-                    <select id="body_part_name" name="body_part_name" multiple required>
-                        <option value="" disabled selected>Choose a body part</option>
-                        {% for body_part in targetted_body_parts%}
-                            <option value="{{body_part.body_part_name}}" {% if body_part.body_part_name in video.body_part_name %} selected {% endif %}>{{body_part.body_part_name}}</option>
-                        {% endfor %}
-                    </select>
-                    <label>Body Part *</label>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">fitness_center</i>
+                        <select id="body_part_name" name="body_part_name" multiple required>
+                            <option value="" disabled selected>Choose a body part</option>
+                            {% for body_part in targetted_body_parts %}
+                                <option value="{{ body_part.body_part_name }}" {% if body_part.body_part_name in video.body_part_name %} selected {% endif %}>{{ body_part.body_part_name }}</option>
+                            {% endfor %}
+                        </select>
+                        <label>Body Part *</label>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="material-icons prefix">account_circle</i>
-                    <input id="contributor_username" name="contributor_username" type="text" value={{video.contributor_username}}>
-                    <label for="contributor_username">Your Username *</label>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">account_circle</i>
+                        <input id="contributor_username" name="contributor_username" type="text" value={{ video.contributor_username }}>
+                        <label for="contributor_username">Your Username *</label>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="row">
-                <button class="waves-effect waves-light btn" type="submit" name="action">
-                    Add Video <i class="material-icons right">playlist_add</i>
-                </button>
-            </div>
-        </form>
-    </div>    
-</div>
+
+                <div class="row">
+                    <button class="waves-effect waves-light btn" type="submit" name="action">
+                        Add Video <i class="material-icons right">playlist_add</i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
 
 {% endblock %}

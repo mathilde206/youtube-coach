@@ -1,2 +1,5 @@
 config.py
 static/css/styles.css.map
+.bashrc
+__pycache__
+venv

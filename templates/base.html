@@ -5,121 +5,119 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>The Youtube Coach</title>
-    
+
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-    
-        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    
-    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker|Ubuntu" rel="stylesheet">    
-    <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}" type="text/css" />
-    
+
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker|Ubuntu" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" type="text/css" />
+
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="nav-wrapper">
-                <a href="/" class="brand-logo center hide-on-small-and-down">My Youtube Coach</a>
-                <a href="/" class="brand-logo center hide-on-med-and-up">My YTC</a>
-                <a href="#" data-activates="mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-                <ul id="nav-mobile" class="left hide-on-med-and-down">
-                    <li><a class="dropdown-button" href="#!" data-activates="dropdown">Explore Videos<i class="material-icons right">arrow_drop_down</i></a></li>
-                    <li><a href="{{url_for('add_video')}}">Add A Video</a></li>
-                </ul>
-                <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="{{url_for('get_stats')}}">Explore Stats</a></li>
-                </ul>
-                <ul class="side-nav" id="mobile">
-                    <li><a href="/">Home</a></li>
-                    <li><a href="{{url_for('add_video')}}">Add A Video</a></li>
-                    <li><a href="{{url_for('get_stats')}}">Explore Stats</a></li>
-                    <li><div class="divider"></div></li>
-                    <li><a class="subheader" href="{{url_for('get_videos', category='all', page_number=1)}}">Explore Videos</a></li>
-                    <li><a class="waves-effect" href="{{url_for('get_videos', category='yoga', page_number=1)}}">Yoga</a></li>
-                    <li><a class="waves-effect" href="{{url_for('get_videos', category='strength', page_number=1)}}">Strength</a></li>
-                    <li><a class="waves-effect" href="{{url_for('get_videos', category='cardio', page_number=1)}}">Cardio</a></li>
-                    <li><a class="waves-effect" href="{{url_for('get_videos', category='all', page_number=1)}}">All</a></li>
-                </ul>
-            </div>
-        </nav>
-        
-        <ul id="dropdown" class="dropdown-content">
-            <li><a href="{{url_for('get_videos', category='yoga', page_number=1)}}">Yoga</a></li>
-            <li><a href="{{url_for('get_videos', category='strength', page_number=1)}}">Strength</a></li>
-            <li><a href="{{url_for('get_videos', category='cardio', page_number=1)}}">Cardio</a></li>
-            <li><a href="{{url_for('get_videos', category='all', page_number=1)}}">All</a></li>
-        </ul>
-    
-    </header>
-    
-    <main>
-        <div class="container">
-            {% block content %}
-            {% endblock %}
+<header>
+    <nav>
+        <div class="nav-wrapper">
+            <a href="/" class="brand-logo center hide-on-small-and-down">My Youtube Coach</a>
+            <a href="/" class="brand-logo center hide-on-med-and-up">My YTC</a>
+            <a href="#" data-activates="mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+            <ul id="nav-mobile" class="left hide-on-med-and-down">
+                <li><a class="dropdown-button" href="#!" data-activates="dropdown">Explore Videos<i class="material-icons right">arrow_drop_down</i></a></li>
+                <li><a href="{{ url_for('add_video') }}">Add A Video</a></li>
+            </ul>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="{{ url_for('get_stats') }}">Explore Stats</a></li>
+            </ul>
+            <ul class="side-nav" id="mobile">
+                <li><a href="/">Home</a></li>
+                <li><a href="{{ url_for('add_video') }}">Add A Video</a></li>
+                <li><a href="{{ url_for('get_stats') }}">Explore Stats</a></li>
+                <li>
+                    <div class="divider"></div>
+                </li>
+                <li><a class="subheader" href="{{ url_for('get_videos', category='all', page_number=1) }}">Explore Videos</a></li>
+                <li><a class="waves-effect" href="{{ url_for('get_videos', category='yoga', page_number=1) }}">Yoga</a></li>
+                <li><a class="waves-effect" href="{{ url_for('get_videos', category='strength', page_number=1) }}">Strength</a></li>
+                <li><a class="waves-effect" href="{{ url_for('get_videos', category='cardio', page_number=1) }}">Cardio</a></li>
+                <li><a class="waves-effect" href="{{ url_for('get_videos', category='all', page_number=1) }}">All</a></li>
+            </ul>
         </div>
-    </main>
+    </nav>
 
-    <footer class="page-footer">
-        <div class='container'>
-            <div class="row">
-                <div class="col s12 m7 l4">
-                    <ul>
-                        <li>© 2018 Mathilde Barbier</li>
-                        <li><a href="{{url_for('about')}}">About</a></li>
-                    </ul>
-                </div>
-                <div class="col s12 m5 l4 offset-l4">
-                    <ul>
-                      <li>
-                        <a href="https://www.linkedin.com/in/mathilde-barbier/">
-                          <i class="fa fa-linkedin fa-2x fa-fw"></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="https://github.com/mathilde206">
-                          <i class="fa fa-github fa-2x fa-fw"></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="https://www.instagram.com/lakoaa/">
-                          <i class="fa fa-instagram fa-2x fa-fw"></i>
-                        </a>
-                      </li>
-                    </ul>
-                </div>
+    <ul id="dropdown" class="dropdown-content">
+        <li><a href="{{ url_for('get_videos', category='yoga', page_number=1) }}">Yoga</a></li>
+        <li><a href="{{ url_for('get_videos', category='strength', page_number=1) }}">Strength</a></li>
+        <li><a href="{{ url_for('get_videos', category='cardio', page_number=1) }}">Cardio</a></li>
+        <li><a href="{{ url_for('get_videos', category='all', page_number=1) }}">All</a></li>
+    </ul>
+
+</header>
+
+<main>
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+</main>
+
+<footer class="page-footer">
+    <div class='container'>
+        <div class="row">
+            <div class="col s12 m7 l4">
+                <ul>
+                    <li>© 2018 Mathilde Barbier</li>
+                    <li><a href="{{ url_for('about') }}">About</a></li>
+                </ul>
             </div>
-            
-    </footer>
+            <div class="col s12 m5 l4 offset-l4">
+                <ul>
+                    <li>
+                        <a href="https://www.linkedin.com/in/mathilde-barbier/">
+                            <i class="fa fa-linkedin fa-2x fa-fw"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/mathilde206">
+                            <i class="fa fa-github fa-2x fa-fw"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/lakoaa/">
+                            <i class="fa fa-instagram fa-2x fa-fw"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
 
+</footer>
 
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-    <script>
-    
-        $(document).ready(function(){
-            $('select').material_select();
-            $(".button-collapse").sideNav();
-            $(".dropdown-button").dropdown();
-            $('.collapsible').collapsible({
-                accordion : true
-            });
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+<script>
+
+    $(document).ready(function () {
+        $('select').material_select();
+        $('.button-collapse').sideNav();
+        $('.dropdown-button').dropdown();
+        $('.collapsible').collapsible({
+            accordion: true
         });
-        
-        $('.datepicker').pickadate({
-            selectMonths: true, // Creates a dropdown to control month
-            selectYears: 15, // Creates a dropdown of 15 years to control year,
-            today: 'Today',
-            clear: 'Clear',
-            close: 'Ok',
-            closeOnSelect: false // Close upon selecting a date,
-        });
-    
-         
-    </script>
-    
-    
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>   
-    <script type="text/javascript" src="{{url_for('static', filename='js/form-validation.js')}}"></script>   
+    });
+
+    $('.datepicker').pickadate({
+        selectMonths: true, // Creates a dropdown to control month
+        selectYears: 15, // Creates a dropdown of 15 years to control year,
+        today: 'Today',
+        clear: 'Clear',
+        close: 'Ok',
+        closeOnSelect: false // Close upon selecting a date,
+    });
+
+</script>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/form-validation.js') }}"></script>
 </body>
 </html>

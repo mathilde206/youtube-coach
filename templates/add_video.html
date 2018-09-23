@@ -1,83 +1,82 @@
 {% extends 'base.html' %} {% block content %}
 
-<h3>Add A Video</h3>
+    <h3>Add A Video</h3>
 
-<div class="container-form z-depth-4">
-    <div class="row">
-        
-        <form name="add_video" method="POST" action="{{ url_for('insert_video') }}" class="col s12 left-alert" >
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="material-icons prefix">ondemand_video</i>
-                    <input id="video_url" name="video_url" type="url">
-                    <label for="video_url">Youtube URL *</label>
+    <div class="container-form z-depth-4">
+        <div class="row">
+
+            <form name="add_video" method="POST" action="{{ url_for('insert_video') }}" class="col s12 left-alert">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">ondemand_video</i>
+                        <input id="video_url" name="video_url" type="url">
+                        <label for="video_url">Youtube URL *</label>
+                    </div>
                 </div>
-            </div>
-            <div class="error"></div>
-            
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="material-icons prefix">poll</i>
-                    <select id="category_name" name="category_name" required>
-                        <option value="" disabled selected>Choose a category</option>
-                        {% for cat in categories%}
-                            <option value="{{cat.category_name}}">{{cat.category_name}}</option>
-                        {% endfor %}
-                    </select>
-                    <label>Category *</label>
+                <div class="error"></div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">poll</i>
+                        <select id="category_name" name="category_name" required>
+                            <option value="" disabled selected>Choose a category</option>
+                            {% for cat in categories %}
+                                <option value="{{ cat.category_name }}">{{ cat.category_name }}</option>
+                            {% endfor %}
+                        </select>
+                        <label>Category *</label>
+                    </div>
                 </div>
-            </div>
-            
-    
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="material-icons prefix">subjects</i>
-                    <textarea id="video_description" name="video_description" class="materialize-textarea" ></textarea>
-                    <label for="video_description">Description</label>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">subjects</i>
+                        <textarea id="video_description" name="video_description" class="materialize-textarea"></textarea>
+                        <label for="video_description">Description</label>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="material-icons prefix">language</i>
-                    <select id="language_name" name="language_name" required>
-                        <option value="" disabled selected>Choose a language</option>
-                        {% for language in languages%}
-                            <option value="{{language.language_name}}">{{language.language_name}}</option>
-                        {% endfor %}
-                    </select>
-                    <label>Language *</label>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">language</i>
+                        <select id="language_name" name="language_name" required>
+                            <option value="" disabled selected>Choose a language</option>
+                            {% for language in languages %}
+                                <option value="{{ language.language_name }}">{{ language.language_name }}</option>
+                            {% endfor %}
+                        </select>
+                        <label>Language *</label>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="material-icons prefix">fitness_center</i>
-                    <select id="body_part_name" name="body_part_name" multiple required>
-                        <option value="" disabled selected>Choose a body part</option>
-                        {% for body_part in targetted_body_parts%}
-                            <option value="{{body_part.body_part_name}}">{{body_part.body_part_name}}</option>
-                        {% endfor %}
-                    </select>
-                    <label>Body Part *</label>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">fitness_center</i>
+                        <select id="body_part_name" name="body_part_name" multiple required>
+                            <option value="" disabled selected>Choose a body part</option>
+                            {% for body_part in targetted_body_parts %}
+                                <option value="{{ body_part.body_part_name }}">{{ body_part.body_part_name }}</option>
+                            {% endfor %}
+                        </select>
+                        <label>Body Part *</label>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="material-icons prefix">account_circle</i>
-                    <input id="contributor_username" name="contributor_username" type="text">
-                    <label for="contributor_username">Your Username *</label>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">account_circle</i>
+                        <input id="contributor_username" name="contributor_username" type="text">
+                        <label for="contributor_username">Your Username *</label>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="row">
-                <button class="waves-effect waves-light btn" type="submit" name="action">
-                    Add Video <i class="material-icons right">playlist_add</i>
-                </button>
-            </div>
-        </form>
-    </div>    
-</div>
+
+                <div class="row">
+                    <button class="waves-effect waves-light btn" type="submit" name="action">
+                        Add Video <i class="material-icons right">playlist_add</i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
 
 {% endblock %}
