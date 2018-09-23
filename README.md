@@ -50,7 +50,7 @@ The mockups can be found [here](https://github.com/mathilde206/youtube-coach/blo
 
 
 ## Deployment
-###Local: 
+### Local: 
 1. Firstly you will need to clone this repository by running the ```git clone https://github.com/mathilde206/youtube-coach``` command
 2. Then you need to install all the dependencies from the requirements.txt file:
   ```
@@ -65,7 +65,7 @@ The mockups can be found [here](https://github.com/mathilde206/youtube-coach/blo
 - MONGO_URI: your own mongo db uri.
 3. To start the application : ```python3 app.py```
 
-###Heroku
+### Heroku
 To deploy on heroku I simply connected heroku to the github repository. 
 - DEVELOPER_KEY (from google for the youtube API)
 - IP : 0.0.0.0
