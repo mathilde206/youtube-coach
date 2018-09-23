@@ -179,7 +179,7 @@ header .dropdown-content li a:focus, header .dropdown-content li a:hover {
     width: 100%;
 }
 
-.get_videos .mobile-filter ul#dropdown1 {
+.get_videos .mobile-filter div#dropdown1 {
     padding: 20px;
     height: 50vh;
 }

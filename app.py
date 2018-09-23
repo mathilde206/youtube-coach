@@ -165,19 +165,16 @@ def get_videos(category, page_number):
         videos = mongo.db.videos.find(query_filter).skip(skips).limit(9)
         number_of_pages = math.ceil(mongo.db.videos.count(query_filter) / 9)
 
-    # TODO:must be a better way to solve the macro problem than add twice...
     return render_template("get_videos.html",
         videos=videos,
         category=category,
         categories=mongo.db.categories.find(),
-        categories2=mongo.db.categories.find(),
         targetted_body_parts=mongo.db.targetted_body_parts.find(),
-        targetted_body_parts2=mongo.db.targetted_body_parts.find(),
         languages=mongo.db.languages.find(),
-        languages2=mongo.db.languages.find(),
         number_of_pages=number_of_pages,
         page_number=page_number,
-        selected=selected)
+        selected=selected,
+    )
 
 
 @app.route("/add_video")
@@ -190,7 +187,7 @@ def add_video():
 
 @app.route("/insert_video", methods=["POST"])
 def insert_video():
-    # First we add the video if it doesn't exist yet 
+    # First we add the video if it doesn't exist yet
     # TODO: Add some message to the user if video already exist (ex: they can update it?)
     video_id = get_video_id_from_url(request.form.get('video_url'))
     if not mongo.db.videos.find_one({'_id': video_id}):
@@ -331,7 +328,7 @@ def update_video(video_id):
 
 @app.route("/get_stats")
 def get_stats():
-    # The first 3 variables get top 3 data 
+    # The first 3 variables get top 3 data
     top_contributors = mongo.db.videos.aggregate([
         {"$group": {"_id": "$contributor_username", "number_of_videos": {"$sum": 1}}},
         {"$sort": {"number_of_videos": -1}},
