@@ -10,6 +10,8 @@ Typical users would be:
 - people who want to get more variety. Some apps exist but they tend to be developped by one brand or one youtuber and therefore are not very varied. The user can here discover new workouts and adapt to their needs and time. 
 - people who like to share their prefered workouts with their friends, because they can easily add videos and others will see what they add.  
 
+The mockups can be found [here](https://github.com/mathilde206/youtube-coach/blob/master/Mockups%20Youtube%20Coach.pdf)
+
 ## Features
  
 ### Existing Features
