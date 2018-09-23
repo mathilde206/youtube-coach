@@ -17,39 +17,37 @@
 </head>
 <body>
 <header>
-    <nav>
-        <div class="nav-wrapper">
-            <a href="/" class="brand-logo center hide-on-small-and-down">My Youtube Coach</a>
-            <a href="/" class="brand-logo center hide-on-med-and-up">My YTC</a>
-            <a href="#" data-activates="mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-            <ul id="nav-mobile" class="left hide-on-med-and-down">
-                <li><a class="dropdown-button" href="#!" data-activates="dropdown">Explore Videos<i class="material-icons right">arrow_drop_down</i></a></li>
-                <li><a href="{{ url_for('add_video') }}">Add A Video</a></li>
-            </ul>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="{{ url_for('get_stats') }}">Explore Stats</a></li>
-            </ul>
-            <ul class="side-nav" id="mobile">
-                <li><a href="/">Home</a></li>
-                <li><a href="{{ url_for('add_video') }}">Add A Video</a></li>
-                <li><a href="{{ url_for('get_stats') }}">Explore Stats</a></li>
-                <li>
-                    <div class="divider"></div>
-                </li>
-                <li><a class="subheader" href="{{ url_for('get_videos', category='all', page_number=1) }}">Explore Videos</a></li>
-                <li><a class="waves-effect" href="{{ url_for('get_videos', category='yoga', page_number=1) }}">Yoga</a></li>
-                <li><a class="waves-effect" href="{{ url_for('get_videos', category='strength', page_number=1) }}">Strength</a></li>
-                <li><a class="waves-effect" href="{{ url_for('get_videos', category='cardio', page_number=1) }}">Cardio</a></li>
-                <li><a class="waves-effect" href="{{ url_for('get_videos', category='all', page_number=1) }}">All</a></li>
-            </ul>
-        </div>
-    </nav>
-
     <ul id="dropdown" class="dropdown-content">
         <li><a href="{{ url_for('get_videos', category='yoga', page_number=1) }}">Yoga</a></li>
         <li><a href="{{ url_for('get_videos', category='strength', page_number=1) }}">Strength</a></li>
         <li><a href="{{ url_for('get_videos', category='cardio', page_number=1) }}">Cardio</a></li>
         <li><a href="{{ url_for('get_videos', category='all', page_number=1) }}">All</a></li>
+    </ul>
+    <nav class="nav-extended">
+        <div class="nav-wrapper">
+            <a href="/" class="brand-logo center hide-on-small-and-down">My Youtube Coach</a>
+            <a href="/" class="brand-logo center hide-on-med-and-up">My YTC</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="{{ url_for('add_video') }}">Add A Video</a></li>
+                <li><a href="{{ url_for('get_stats') }}">Explore Stats</a></li>
+                <li><a class="dropdown-trigger" data-target="dropdown">Explore Videos<i class="material-icons right">arrow_drop_down</i></a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="/">Home</a></li>
+        <li><a href="{{ url_for('add_video') }}">Add A Video</a></li>
+        <li><a href="{{ url_for('get_stats') }}">Explore Stats</a></li>
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li><a class="subheader" href="{{ url_for('get_videos', category='all', page_number=1) }}">Explore Videos</a></li>
+        <li><a class="waves-effect" href="{{ url_for('get_videos', category='yoga', page_number=1) }}">Yoga</a></li>
+        <li><a class="waves-effect" href="{{ url_for('get_videos', category='strength', page_number=1) }}">Strength</a></li>
+        <li><a class="waves-effect" href="{{ url_for('get_videos', category='cardio', page_number=1) }}">Cardio</a></li>
+        <li><a class="waves-effect" href="{{ url_for('get_videos', category='all', page_number=1) }}">All</a></li>
     </ul>
 
 </header>
@@ -98,9 +96,9 @@
 <script>
 
     $(document).ready(function () {
-        $('select').material_select();
-        $('.button-collapse').sideNav();
-        $('.dropdown-button').dropdown();
+        $('select').formSelect();
+        $('.sidenav').sidenav();
+        $(".dropdown-trigger").dropdown();
         $('.collapsible').collapsible({
             accordion: true
         });
