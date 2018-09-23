@@ -3,15 +3,15 @@
         <h6>Category</h6>
         {% for category in categories %}
             <p>
-                <input id="{{ category.category_name }}"
-                       name="category_name"
-                       value="{{ category.category_name }}"
-                       type="checkbox"
-                        {% if category.category_name in selected.category_name %}
-                       checked="checked"
-                        {% endif %}
-                />
                 <label for="{{ category.category_name }}">
+                    <input id="{{ category.category_name }}"
+                           name="category_name"
+                           value="{{ category.category_name }}"
+                           type="checkbox"
+                            {% if category.category_name in selected.category_name %}
+                           checked="checked"
+                            {% endif %}
+                    />
                     <span>{{ category.category_name }}</span>
                 </label>
             </p>
@@ -20,15 +20,15 @@
         <h6>Body Part</h6>
         {% for body_part in targetted_body_parts %}
             <p>
-                <input id="{{ body_part.body_part_name }}"
-                       name="body_part_name"
-                       value="{{ body_part.body_part_name }}"
-                       type="checkbox"
-                        {% if body_part.body_part_name in selected.body_part_name %}
-                       checked="checked"
-                        {% endif %}
-                />
                 <label for="{{ body_part.body_part_name }}">
+                    <input id="{{ body_part.body_part_name }}"
+                           name="body_part_name"
+                           value="{{ body_part.body_part_name }}"
+                           type="checkbox"
+                            {% if body_part.body_part_name in selected.body_part_name %}
+                           checked="checked"
+                            {% endif %}
+                    />
                     <span>{{ body_part.body_part_name }}</span>
                 </label>
             </p>
@@ -37,15 +37,15 @@
         <h6>Language</h6>
         {% for language in languages %}
             <p>
-                <input id="{{ language.language_name }}"
-                       name="language_name"
-                       value="{{ language.language_name }}"
-                       type="checkbox"
-                        {% if language.language_name in selected.language_name %}
-                       checked="checked"
-                        {% endif %}
-                />
                 <label for="{{ language.language_name }}">
+                    <input id="{{ language.language_name }}"
+                           name="language_name"
+                           value="{{ language.language_name }}"
+                           type="checkbox"
+                            {% if language.language_name in selected.language_name %}
+                           checked="checked"
+                            {% endif %}
+                    />
                     <span>{{ language.language_name }}</span>
                 </label>
             </p>
@@ -126,8 +126,8 @@
                             {% else %}
                         <li class="waves-effect">
                     {% endif %}
-                <a href="{{ url_for('get_videos',category=category,number_of_pages=number_of_pages,page_number=numb+1)}}">
-                    {{ numb+1}}
+                <a href="{{ url_for('get_videos',category=category,number_of_pages=number_of_pages,page_number=numb+1) }}">
+                    {{ numb+1 }}
                 </a>
                 </li>
                 {% endfor %}
@@ -135,7 +135,7 @@
                     <li class="disabled"><a href="#"><i class="material-icons">chevron_right</i></a></li>
                 {% else %}
                     <li class="waves-effect">
-                        <a href="{{ url_for('get_videos',category=category,number_of_pages=number_of_pages,page_number=page_number|int+1)}}">
+                        <a href="{{ url_for('get_videos',category=category,number_of_pages=number_of_pages,page_number=page_number|int+1) }}">
                             <i class="material-icons">chevron_right</i>
                         </a>
                     </li>
