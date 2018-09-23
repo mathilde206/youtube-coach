@@ -24,7 +24,7 @@
                                 <option value="{{ cat.category_name }}">{{ cat.category_name }}</option>
                             {% endfor %}
                         </select>
-                        <label>Category *</label>
+                        <label for="category_name">Category *</label>
                     </div>
                 </div>
 
@@ -45,20 +45,24 @@
                                 <option value="{{ language.language_name }}">{{ language.language_name }}</option>
                             {% endfor %}
                         </select>
-                        <label>Language *</label>
+                        <label for="language_name">Language *</label>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">fitness_center</i>
-                        <select id="body_part_name" name="body_part_name" multiple required>
-                            <option value="" disabled selected>Choose a body part</option>
+                        <select
+                                id="body_part_name"
+                                name="body_part_name"
+                                multiple
+                                required
+                        >
                             {% for body_part in targetted_body_parts %}
                                 <option value="{{ body_part.body_part_name }}">{{ body_part.body_part_name }}</option>
                             {% endfor %}
                         </select>
-                        <label>Body Part *</label>
+                        <label for="body_part_name">Body Part *</label>
                     </div>
                 </div>
 
