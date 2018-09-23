@@ -75,16 +75,18 @@
             <div class="col s8 m10">
                 {% for video in videos %}
                     <div class="col s12 m6 l4">
-                        <div class="card get-videos">
-                            <div class="card-image">
-                                <img src="{{ video.thumbnails.large }}">
-                                <a href="{{ url_for('get_detail', video_id=video._id) }}" class="btn-floating halfway-fab waves-effect waves-light"><i class="material-icons">add</i></a>
+                        <a href="{{ url_for('get_detail', video_id=video._id) }}">
+                            <div class="card get-videos">
+                                <div class="card-image">
+                                    <img src="{{ video.thumbnails.large }}">
+                                    <a href="{{ url_for('get_detail', video_id=video._id) }}" class="btn-floating halfway-fab waves-effect waves-light"><i class="material-icons">add</i></a>
+                                </div>
+                                <div class="card-content">
+                                    <h4 class="card-title truncate">{{ video.video_title }}</h4>
+                                    <p>{{ video.description }}</p>
+                                </div>
                             </div>
-                            <div class="card-content">
-                                <h4 class="card-title truncate">{{ video.video_title }}</h4>
-                                <p>{{ video.description }}</p>
-                            </div>
-                        </div>
+                        </a>
                     </div>
                 {% endfor %}
             </div>
