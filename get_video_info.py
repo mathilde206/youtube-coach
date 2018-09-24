@@ -7,7 +7,7 @@ from googleapiclient.discovery import build
 from urllib.parse import parse_qs, urlparse
 from googleapiclient.errors import HttpError
 
-DEVELOPER_KEY = 'AIzaSyA-HP_X6A6Gp15rbv4VGSnJJSg_9UdUPG0'
+DEVELOPER_KEY = os.environ.get('DEVELOPER_KEY')
 YOUTUBE_API_SERVICE_NAME = 'youtube'
 YOUTUBE_API_VERSION = 'v3'
 
